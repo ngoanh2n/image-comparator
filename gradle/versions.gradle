@@ -1,0 +1,9 @@
+/**
+ * Author: Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
+ext {
+    versionCommons                  =   "1.0.0"
+    versionAllure                   =   "2.21.0"
+    versionSlf4j                    =   "2.0.7"
+    versionJunitJupiter             =   "5.9.2"
+}
