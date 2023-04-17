@@ -3,4 +3,5 @@
  */
 dependencies {
     api(project(":image-comparator"))
+    implementation("io.qameta.allure:allure-java-commons:$versionAllure")
 }
