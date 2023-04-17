@@ -1,8 +1,31 @@
 /**
  * Author: Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
+plugins {
+    id("io.qameta.allure") version "2.11.2"
+}
+
 dependencies {
     api(project(":image-comparator"))
     implementation("io.qameta.allure:allure-java-commons:$versionAllure")
     testImplementation("io.qameta.allure:allure-junit5:$versionAllure")
+}
+
+allure {
+    version = "$versionAllure"
+    adapter {
+        aspectjWeaver = true
+        aspectjVersion = "1.9.5"
+        autoconfigureListeners = true
+
+        frameworks {
+            junit5 {
+                enabled = true
+                autoconfigureListeners = true
+            }
+        }
+    }
+    report {
+        reportDir = layout.buildDirectory.dir("allure")
+    }
 }
