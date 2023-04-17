@@ -1,5 +1,4 @@
-/**
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @since 2022-11-25
- */
-rootProject.name = "empty4"
+rootProject.setName("imgc")
+
+include("image-comparator")
+include("image-comparator-allure")
