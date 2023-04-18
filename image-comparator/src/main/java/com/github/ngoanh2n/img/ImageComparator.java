@@ -1,10 +1,14 @@
 package com.github.ngoanh2n.img;
 
+import com.google.common.collect.Collections2;
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.ServiceLoader;
 
 @ParametersAreNonnullByDefault
 public final class ImageComparator {
@@ -31,5 +35,17 @@ public final class ImageComparator {
 
     private ImageComparisonResult compare() {
         return null;
+    }
+
+    private List<ImageComparisonVisitor> getVisitors() {
+        ServiceLoader<ImageComparisonVisitor> serviceLoader = ServiceLoader.load(ImageComparisonVisitor.class);
+        ImmutableList<ImageComparisonVisitor> visitors = ImmutableList.copyOf(serviceLoader.iterator());
+
+        if (!options.resultOptions().writeOutput()) {
+            visitors = ImmutableList.copyOf(Collections2.filter(visitors,
+                    visitor -> !visitor.getClass().getName().equals(ImageComparisonOutput.class.getName())));
+        }
+        visitors.forEach(visitor -> log.debug("{}: {}", ImageComparisonVisitor.class.getName(), visitor.getClass().getName()));
+        return visitors;
     }
 }
