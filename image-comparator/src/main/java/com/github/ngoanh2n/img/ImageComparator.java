@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.util.List;
@@ -32,6 +33,42 @@ public final class ImageComparator {
         return new ImageComparator(exp, act, options).compare();
     }
 
+    //-------------------------------------------------------------------------------//
+
+    private static ImageComparisonSources doComparison(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
+        ImageComparisonSource expComparisonSource = new ImageComparisonSource(exp);
+        ImageComparisonSource actComparisonSource = new ImageComparisonSource(act);
+        ImageComparisonSources comparisonSources = new ImageComparisonSources(expComparisonSource, actComparisonSource, options);
+
+        if (!equalBytes(exp, act)) {
+            ImageSource disregardSource = ImageSource.disregard(expComparisonSource, actComparisonSource);
+            ImageSource differenceSource = ImageSource.difference(expComparisonSource, actComparisonSource);
+
+            int width = comparisonSources.getMaxWidth();
+            int height = comparisonSources.getMaxHeight();
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    Point point = new Point(x, y);
+                    if (disregardSource.contain(point)) {
+                        comparisonSources.addDisregard(point);
+                        continue;
+                    }
+                    if (!comparisonSources.contain(point)) {
+                        comparisonSources.addDifference(point);
+                        continue;
+                    }
+                    if (differenceSource.contain(point)) {
+                        if (comparisonSources.containWithRGB(point)) {
+                            comparisonSources.addDifference(point);
+                        }
+                    }
+                }
+            }
+        }
+        return comparisonSources;
+    }
+
     private static boolean equalBytes(BufferedImage exp, BufferedImage act) {
         return exp.getHeight() == act.getHeight() &&
                 exp.getWidth() == act.getWidth() &&
@@ -39,8 +76,6 @@ public final class ImageComparator {
                 equalBuffers(exp.getRaster().getDataBuffer(), act.getRaster().getDataBuffer());
     }
 
-    //-------------------------------------------------------------------------------//
-    
     private static boolean equalBuffers(DataBuffer exp, DataBuffer act) {
         return act.getSize() == exp.getSize() &&
                 act.getDataType() == exp.getDataType() &&
