@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
 import java.util.List;
 import java.util.ServiceLoader;
 
@@ -29,6 +30,33 @@ public final class ImageComparator {
 
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
         return new ImageComparator(exp, act, options).compare();
+    }
+
+    private static boolean equalBytes(BufferedImage exp, BufferedImage act) {
+        return exp.getHeight() == act.getHeight() &&
+                exp.getWidth() == act.getWidth() &&
+                act.getColorModel().equals(exp.getColorModel()) &&
+                equalBuffers(exp.getRaster().getDataBuffer(), act.getRaster().getDataBuffer());
+    }
+
+    //-------------------------------------------------------------------------------//
+    
+    private static boolean equalBuffers(DataBuffer exp, DataBuffer act) {
+        return act.getSize() == exp.getSize() &&
+                act.getDataType() == exp.getDataType() &&
+                act.getNumBanks() == exp.getNumBanks() &&
+                equalBufferElements(act, exp);
+    }
+
+    private static boolean equalBufferElements(DataBuffer exp, DataBuffer act) {
+        for (int numBank = 0; numBank < exp.getNumBanks(); numBank++) {
+            for (int i = 0; i < exp.getSize(); i++) {
+                if (exp.getElem(numBank, i) != act.getElem(numBank, i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     //-------------------------------------------------------------------------------//
