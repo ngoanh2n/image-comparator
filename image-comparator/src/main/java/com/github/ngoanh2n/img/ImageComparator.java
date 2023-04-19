@@ -1,7 +1,9 @@
 package com.github.ngoanh2n.img;
 
+import com.github.ngoanh2n.RuntimeError;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.ImmutableList;
+import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +99,26 @@ public final class ImageComparator {
     //-------------------------------------------------------------------------------//
 
     private ImageComparisonResult compare() {
-        return null;
+        ImageComparisonResult result;
+        long starting = System.currentTimeMillis();
+        List<ImageComparisonVisitor> visitors = getVisitors();
+
+        try {
+            visitors.forEach(visitor -> visitor.comparisonStarted(options, exp, act));
+            ImageComparisonSources comparisonSources = doComparison(exp, act, options);
+            result = new ImageResult(comparisonSources, options);
+            visitors.forEach(visitor -> visitor.comparisonFinished(options, exp, act, result));
+            log.debug("Image comparison result: {}", result);
+        } catch (Exception e) {
+            String msg = "Error occurred while comparing";
+            log.error(msg);
+            throw new RuntimeError(msg, e);
+        } finally {
+            long ending = System.currentTimeMillis();
+            String format = "[HH 'hours', mm 'minutes', ss 'seconds', SS 'milliseconds']";
+            log.info("Image comparison finished in {}", DurationFormatUtils.formatDuration(ending - starting, format, true));
+        }
+        return result;
     }
 
     private List<ImageComparisonVisitor> getVisitors() {
