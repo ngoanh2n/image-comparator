@@ -15,6 +15,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Writes Allure results while comparing.
+ *
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 public class ImageComparisonReport implements ImageComparisonVisitor {
     public static final Prop<Boolean> includeSource = Prop.bool("ngoanh2n.img.includeSource", true);
     public static final Prop<Boolean> includeResult = Prop.bool("ngoanh2n.img.includeResult", true);
@@ -25,6 +30,9 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
     private String uuid;
     private AllureLifecycle lifecycle;
 
+    /**
+     * Default constructor.
+     */
     public ImageComparisonReport() { /* No implementation necessary */ }
 
     //-------------------------------------------------------------------------------//

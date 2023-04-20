@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 class ImageComparisonSource {
     private final BufferedImage image;
     private final Set<Rectangle> rectanglesToIgnore;

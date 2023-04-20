@@ -14,6 +14,15 @@ import java.awt.image.DataBuffer;
 import java.util.List;
 import java.util.ServiceLoader;
 
+/**
+ * This is starting point to compare 2 images.
+ * <ul>
+ *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage)}</li>
+ *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions)}</li>
+ * </ul>
+ *
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 @ParametersAreNonnullByDefault
 public final class ImageComparator {
     private final static Logger log = LoggerFactory.getLogger(ImageComparator.class);
@@ -27,10 +36,27 @@ public final class ImageComparator {
         this.options = options;
     }
 
+    //-------------------------------------------------------------------------------//
+
+    /**
+     * Compare 2 buffered images.
+     *
+     * @param exp The expected BufferedImage.
+     * @param act The actual BufferedImage needs to compare.
+     * @return {@link ImageComparisonResult} after comparison process ended.
+     */
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act) {
         return compare(exp, act, ImageComparisonOptions.defaults());
     }
 
+    /**
+     * Compare 2 buffered images.
+     *
+     * @param exp     the expected BufferedImage.
+     * @param act     the actual BufferedImage needs to compare.
+     * @param options {@link ImageComparisonOptions} you have provided.
+     * @return {@link ImageComparisonResult} after comparison process ended.
+     */
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
         return new ImageComparator(exp, act, options).compare();
     }
