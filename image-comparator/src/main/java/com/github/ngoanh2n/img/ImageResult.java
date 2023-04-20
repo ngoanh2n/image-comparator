@@ -2,6 +2,9 @@ package com.github.ngoanh2n.img;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 class ImageResult implements ImageComparisonResult {
     private final int diffSize;
     private final BufferedImage diffImage;

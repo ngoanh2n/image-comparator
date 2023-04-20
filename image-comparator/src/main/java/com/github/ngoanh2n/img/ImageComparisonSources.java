@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 class ImageComparisonSources {
     private final ImageComparisonSource exp;
     private final ImageComparisonSource act;
