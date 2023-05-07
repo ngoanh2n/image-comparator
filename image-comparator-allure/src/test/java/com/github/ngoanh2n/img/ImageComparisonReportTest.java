@@ -1,6 +1,8 @@
 package com.github.ngoanh2n.img;
 
 import com.github.ngoanh2n.Resource;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +14,10 @@ import java.io.IOException;
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
+@Epic("Image Comparator")
 public class ImageComparisonReportTest {
     @Test
+    @Feature("Image Comparator: Equal")
     void equal() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/exp/image.jpg");
@@ -23,6 +27,7 @@ public class ImageComparisonReportTest {
     }
 
     @Test
+    @Feature("Image Comparator: Has Differences")
     void different() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/act/image.jpg");
