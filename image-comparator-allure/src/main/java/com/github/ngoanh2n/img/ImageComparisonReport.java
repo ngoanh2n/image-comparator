@@ -21,7 +21,15 @@ import java.util.UUID;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class ImageComparisonReport implements ImageComparisonVisitor {
+    /**
+     * Indicate which attaches image sources to Allure report.<br>
+     * Default to {@code true}.
+     */
     public static final Prop<Boolean> includeSource = Prop.bool("ngoanh2n.img.includeSource", true);
+    /**
+     * Indicate which attaches comparison result (diff image and deviation) to Allure report.<br>
+     * Default to {@code true}.
+     */
     public static final Prop<Boolean> includeResult = Prop.bool("ngoanh2n.img.includeResult", true);
     private static final Logger log = LoggerFactory.getLogger(ImageComparisonReport.class);
 
