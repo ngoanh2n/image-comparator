@@ -14,6 +14,11 @@ import java.nio.file.Path;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class ImageComparisonOutput implements ImageComparisonVisitor {
+    /**
+     * Default constructor.
+     */
+    public ImageComparisonOutput() { /* No implementation necessary */ }
+
     @Override
     public void comparisonFinished(ImageComparisonOptions options, BufferedImage exp, BufferedImage act, ImageComparisonResult result) {
         if (options.resultOptions().writeOutput()) {
