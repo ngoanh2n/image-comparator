@@ -20,3 +20,7 @@ Add to `pom.xml`
     <version>1.0.0</version>
 </dependency>
 ```
+
+# System Properties
+- `ngoanh2n.img.includeSource`: Indicate which attaches image sources to Allure report.
+- `ngoanh2n.img.includeResult`: Indicate which attaches comparison result (diff image and deviation) to Allure report.
