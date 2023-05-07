@@ -64,7 +64,7 @@ ImageComparisonResult.getAllowedDeviation()
 ImageComparisonResult.getCurrentDeviation()
 ```
 
-_By default, the diff image which is created after comparison is saved as name `build/ngoanh2n/image/{yyyyMMdd.HHmmss.SSS}.png`_
+_By default, the diff image which is created after comparison is saved as name `build/ngoanh2n/img/{yyyyMMdd.HHmmss.SSS}.png`_
 
 ## Allure Report
 Your project is using Allure as a report framework, `image-comparator-allure` should be used. ([README](image-comparator-allure#readme))
