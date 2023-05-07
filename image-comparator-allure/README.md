@@ -4,6 +4,8 @@
 # Image Comparator for Allure
 Your project is using Allure as a report framework, `image-comparator-allure` should be used.
 
+![](images/allure-report.png)
+
 # Declarations
 ## Gradle
 Add to `build.gradle`
