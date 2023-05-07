@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
 public class ImageComparisonReportTest {
     @Test
     void equal() throws IOException {
