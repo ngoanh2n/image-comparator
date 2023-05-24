@@ -34,16 +34,16 @@ public interface ImageComparisonResultOptions {
     //-------------------------------------------------------------------------------//
 
     /**
-     * Where you want to store comparison result output files.
+     * Where you want to store comparison result output file.
      *
-     * @return path to location.
+     * @return The path to location.
      */
     Path location();
 
     /**
-     * Whether wrote output files.
+     * Whether wrote output file.
      *
-     * @return Indicate to write output files.
+     * @return Indicate to write output file.
      */
     boolean writeOutput();
 
@@ -57,8 +57,8 @@ public interface ImageComparisonResultOptions {
         private boolean writeOutput;
 
         private Builder() {
-            writeOutput = true;
-            location = Paths.get("build/ngoanh2n/img");
+            this.location = Paths.get("build/ngoanh2n/img");
+            this.writeOutput = true;
         }
 
         /**
@@ -68,7 +68,7 @@ public interface ImageComparisonResultOptions {
          * @return {@link Builder}.
          */
         public Builder setLocation(Path value) {
-            location = Preconditions.checkNotNull(value, "path cannot not be null");
+            this.location = Preconditions.checkNotNull(value, "path cannot not be null");
             return this;
         }
 
@@ -79,7 +79,7 @@ public interface ImageComparisonResultOptions {
          * @return {@link Builder}.
          */
         public Builder writeOutput(boolean enabled) {
-            writeOutput = enabled;
+            this.writeOutput = enabled;
             return this;
         }
 
