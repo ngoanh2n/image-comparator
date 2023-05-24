@@ -3,7 +3,7 @@ package com.github.ngoanh2n.img;
 import java.awt.image.BufferedImage;
 
 /**
- * This interface should be used to walk through {@link ImageComparator}. <br>
+ * Used to walk through {@link ImageComparator}.<br>
  * How to build the service provider:<br>
  * <ul>
  *      <li>1. Create a class that implements SPI {@link ImageComparisonVisitor}

@@ -23,21 +23,21 @@ public interface ImageComparisonResult {
     int getDiffSize();
 
     /**
-     * Gets diff image after comparison.
+     * Get diff image after comparison.
      *
      * @return The image was decorated where is different and where is ignored.
      */
     BufferedImage getDiffImage();
 
     /**
-     * Gets the deviation you have set by {@link ImageComparisonOptions.Builder#setDeviation(double)}.
+     * Get the deviation you have set by {@link ImageComparisonOptions.Builder#setDeviation(double)}.
      *
      * @return Allowed deviation.
      */
     double getAllowedDeviation();
 
     /**
-     * Gets the deviation that was detected after comparison.
+     * Get the deviation that was detected after comparison.
      *
      * @return Current deviation.
      */

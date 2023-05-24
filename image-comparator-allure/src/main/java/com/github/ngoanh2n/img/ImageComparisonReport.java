@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Writes Allure results while comparing.
+ * Write Allure results while comparing.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */

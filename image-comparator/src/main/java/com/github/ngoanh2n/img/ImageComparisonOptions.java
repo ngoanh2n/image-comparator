@@ -3,7 +3,7 @@ package com.github.ngoanh2n.img;
 import java.awt.*;
 
 /**
- * This class allows to adjust {@link ImageComparator} by your expectation.
+ * Adjust behaviors of {@link ImageComparator}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
@@ -59,7 +59,7 @@ public interface ImageComparisonOptions {
     //===============================================================================//
 
     /**
-     * This class allows to build {@link ImageComparisonOptions}.
+     * Build a {@link ImageComparisonOptions}.
      */
     final class Builder {
         private double deviation;
@@ -78,7 +78,7 @@ public interface ImageComparisonOptions {
          * Set deviation for making a judgment on whether images are different corresponds to the allowed deviation.
          *
          * @param value Allowed deviation.
-         * @return {@link ImageComparisonOptions.Builder}.
+         * @return The current {@link ImageComparisonOptions.Builder}.
          */
         public Builder setDeviation(double value) {
             this.deviation = value;
@@ -88,8 +88,8 @@ public interface ImageComparisonOptions {
         /**
          * Set color for decorating at ignored pixels after compared.
          *
-         * @param value {@link Color} to decorate differences.
-         * @return {@link ImageComparisonOptions.Builder}.
+         * @param value A {@link Color}.
+         * @return The current {@link ImageComparisonOptions.Builder}.
          */
         public Builder setDisregardColor(Color value) {
             this.disregardColor = value;
@@ -99,8 +99,8 @@ public interface ImageComparisonOptions {
         /**
          * Set color for decorating at different pixels after compared.
          *
-         * @param value {@link Color} to decorate differences.
-         * @return {@link ImageComparisonOptions.Builder}.
+         * @param value A {@link Color}.
+         * @return The current {@link ImageComparisonOptions.Builder}.
          */
         public Builder setDifferenceColor(Color value) {
             this.differenceColor = value;
@@ -110,8 +110,8 @@ public interface ImageComparisonOptions {
         /**
          * Set {@link ImageComparisonResultOptions} to adjust {@link ImageComparisonResult} output.
          *
-         * @param value to adjust output.
-         * @return {@link ImageComparisonOptions.Builder}.
+         * @param value A {@link ImageComparisonResultOptions}.
+         * @return The current {@link ImageComparisonOptions.Builder}.
          */
         public Builder setResultOptions(ImageComparisonResultOptions value) {
             this.resultOptions = value;

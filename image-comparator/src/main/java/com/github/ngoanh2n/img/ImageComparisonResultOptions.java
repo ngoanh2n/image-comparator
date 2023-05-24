@@ -7,26 +7,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * This class allows to adjust {@link ImageComparisonResult} output by your expectation.
+ * Adjust behaviors of {@link ImageComparisonResult}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 @ParametersAreNonnullByDefault
 public interface ImageComparisonResultOptions {
     /**
-     * Gets {@link ImageComparisonResultOptions.Builder} class
-     * where allows to build your {@link ImageComparisonResultOptions}.
+     * Get {@link ImageComparisonResultOptions.Builder} class where allows to build your {@link ImageComparisonResultOptions}.
      *
-     * @return {@link ImageComparisonResultOptions.Builder}.
+     * @return A {@link ImageComparisonResultOptions.Builder}.
      */
     static Builder builder() {
         return new Builder();
     }
 
     /**
-     * Gets {@link ImageComparisonResultOptions} with default options.
+     * Get {@link ImageComparisonResultOptions} with default options.
      *
-     * @return {@link ImageComparisonResultOptions}.
+     * @return A {@link ImageComparisonResultOptions}.
      */
     static ImageComparisonResultOptions defaults() {
         return builder().build();
@@ -51,7 +50,7 @@ public interface ImageComparisonResultOptions {
     //===============================================================================//
 
     /**
-     * This class allows to build {@link ImageComparisonResultOptions}.
+     * Build a {@link ImageComparisonResultOptions}.
      */
     final class Builder {
         private Path location;

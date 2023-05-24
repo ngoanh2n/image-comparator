@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 /**
- * This is starting point to compare 2 images.
+ * Starting point to compare 2 images.
  * <ul>
  *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage)}</li>
  *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions)}</li>
@@ -43,7 +43,7 @@ public final class ImageComparator {
      *
      * @param exp The expected BufferedImage.
      * @param act The actual BufferedImage needs to compare.
-     * @return {@link ImageComparisonResult} after comparison process ended.
+     * @return A {@link ImageComparisonResult} after comparison process ended.
      */
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act) {
         return compare(exp, act, ImageComparisonOptions.defaults());
@@ -55,7 +55,7 @@ public final class ImageComparator {
      * @param exp     the expected BufferedImage.
      * @param act     the actual BufferedImage needs to compare.
      * @param options {@link ImageComparisonOptions} you have provided.
-     * @return {@link ImageComparisonResult} after comparison process ended.
+     * @return A {@link ImageComparisonResult} after comparison process ended.
      */
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
         return new ImageComparator(exp, act, options).compare();
