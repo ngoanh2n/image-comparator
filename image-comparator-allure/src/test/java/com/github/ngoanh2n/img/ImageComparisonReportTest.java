@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.img;
 
-import com.github.ngoanh2n.Resource;
+import com.github.ngoanh2n.Resources;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
@@ -37,7 +37,7 @@ public class ImageComparisonReportTest {
     }
 
     private BufferedImage getImage(String resourceName) throws IOException {
-        File file = Resource.getFile(resourceName);
+        File file = Resources.getFile(resourceName);
         return ImageIO.read(file);
     }
 }

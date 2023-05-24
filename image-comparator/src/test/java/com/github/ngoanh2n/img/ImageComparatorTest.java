@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.img;
 
-import com.github.ngoanh2n.Resource;
+import com.github.ngoanh2n.Resources;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ public class ImageComparatorTest {
     }
 
     private BufferedImage getImage(String resourceName) throws IOException {
-        File file = Resource.getFile(resourceName);
+        File file = Resources.getFile(resourceName);
         return ImageIO.read(file);
     }
 }
