@@ -1,5 +1,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/image-comparator-allure/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/image-comparator-allure)
 [![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/image-comparator-allure/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/image-comparator-allure)
+[![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # Image Comparator for Allure
 Your project is using Allure as a report framework, `image-comparator-allure` should be used.
