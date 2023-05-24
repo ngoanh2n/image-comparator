@@ -10,7 +10,7 @@ Your project is using Allure as a report framework, `image-comparator-allure` sh
 ## Gradle
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:image-comparator-allure:1.0.0")
+implementation("com.github.ngoanh2n:image-comparator-allure:1.0.1")
 ```
 
 ## Maven
@@ -19,7 +19,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>image-comparator-allure</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
