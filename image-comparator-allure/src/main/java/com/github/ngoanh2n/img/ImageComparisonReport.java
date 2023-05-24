@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.img;
 
-import com.github.ngoanh2n.Prop;
+import com.github.ngoanh2n.Property;
 import com.github.ngoanh2n.RuntimeError;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;
@@ -25,12 +25,12 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
      * Indicate which attaches image sources to Allure report.<br>
      * Default to {@code true}.
      */
-    public static final Prop<Boolean> includeSource = Prop.bool("ngoanh2n.img.includeSource", true);
+    public static final Property<Boolean> includeSource = Property.ofBoolean("ngoanh2n.img.includeSource", true);
     /**
      * Indicate which attaches comparison result (diff image and deviation) to Allure report.<br>
      * Default to {@code true}.
      */
-    public static final Prop<Boolean> includeResult = Prop.bool("ngoanh2n.img.includeResult", true);
+    public static final Property<Boolean> includeResult = Property.ofBoolean("ngoanh2n.img.includeResult", true);
     private static final Logger log = LoggerFactory.getLogger(ImageComparisonReport.class);
 
     //-------------------------------------------------------------------------------//
