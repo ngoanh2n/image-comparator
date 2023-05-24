@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.img;
 
 import com.github.ngoanh2n.RuntimeError;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.time.DurationFormatUtils;
@@ -31,9 +32,9 @@ public final class ImageComparator {
     private final ImageComparisonOptions options;
 
     private ImageComparator(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
-        this.exp = exp;
-        this.act = act;
-        this.options = options;
+        this.exp = Preconditions.checkNotNull(exp, "exp image cannot be null");
+        this.act = Preconditions.checkNotNull(act, "act image cannot be null");
+        this.options = Preconditions.checkNotNull(options, "options cannot be null");
     }
 
     //-------------------------------------------------------------------------------//
@@ -52,9 +53,9 @@ public final class ImageComparator {
     /**
      * Compare 2 buffered images.
      *
-     * @param exp     the expected BufferedImage.
-     * @param act     the actual BufferedImage needs to compare.
-     * @param options {@link ImageComparisonOptions} you have provided.
+     * @param exp     The expected BufferedImage.
+     * @param act     The actual BufferedImage needs to compare.
+     * @param options The {@link ImageComparisonOptions} to adjust behaviors of {@link ImageComparator}.
      * @return A {@link ImageComparisonResult} after comparison process ended.
      */
     public static ImageComparisonResult compare(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {

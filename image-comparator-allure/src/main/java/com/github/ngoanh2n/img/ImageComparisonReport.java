@@ -45,6 +45,9 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
 
     //-------------------------------------------------------------------------------//
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void comparisonStarted(ImageComparisonOptions options, BufferedImage exp, BufferedImage act) {
         uuid = UUID.randomUUID().toString();
@@ -54,6 +57,9 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
         lifecycle.startStep(uuid, result);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void comparisonFinished(ImageComparisonOptions options, BufferedImage exp, BufferedImage act, ImageComparisonResult result) {
         attachSource(exp, act);
