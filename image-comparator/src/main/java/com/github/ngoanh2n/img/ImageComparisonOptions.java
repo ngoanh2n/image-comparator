@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Adjust behaviors of {@link ImageComparator}.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public interface ImageComparisonOptions {
     /**

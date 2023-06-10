@@ -22,7 +22,7 @@ import java.util.ServiceLoader;
  *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions)}</li>
  * </ul>
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 @ParametersAreNonnullByDefault
 public final class ImageComparator {
