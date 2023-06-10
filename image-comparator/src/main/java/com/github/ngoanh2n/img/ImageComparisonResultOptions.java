@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 /**
  * Adjust behaviors of {@link ImageComparisonResult}.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 @ParametersAreNonnullByDefault
 public interface ImageComparisonResultOptions {

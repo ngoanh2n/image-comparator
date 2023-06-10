@@ -11,7 +11,7 @@ import java.nio.file.Path;
 /**
  * A default implementation for {@link ImageComparisonVisitor} for writing output.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public class ImageComparisonOutput implements ImageComparisonVisitor {
     /**
