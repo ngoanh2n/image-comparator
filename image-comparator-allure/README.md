@@ -4,19 +4,19 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # Image Comparator for Allure
-Your project is using Allure as a report framework, `image-comparator-allure` should be used.
+When using Allure as a report framework, `image-comparator-allure` should be used.
 
 ![](images/allure-report.png)
 
-# Declarations
-## Gradle
-Add to `build.gradle`
+# Declaration
+### Gradle
+Add to `build.gradle`.
 ```gradle
 implementation("com.github.ngoanh2n:image-comparator-allure:1.0.1")
 ```
 
-## Maven
-Add to `pom.xml`
+### Maven
+Add to `pom.xml`.
 ```xml
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
@@ -25,6 +25,8 @@ Add to `pom.xml`
 </dependency>
 ```
 
-# System Properties
-- `ngoanh2n.img.includeSource`: Indicate which attaches image sources to Allure report.
-- `ngoanh2n.img.includeResult`: Indicate which attaches comparison result (diff image and deviation) to Allure report.
+# System Property
+| Name                          | Description                                                                            | Default |
+|:------------------------------|:---------------------------------------------------------------------------------------|:--------|
+| `ngoanh2n.img.includeSource`  | Indicate which attaches image sources to Allure report.                                | `true`  |
+| `ngoanh2n.img.includeResult`  | Indicate which attaches comparison result (diff image and deviation) to Allure report. | `true`  |
