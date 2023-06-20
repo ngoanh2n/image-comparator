@@ -9,30 +9,28 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # Image Comparator
+**Table of Contents**
+<!-- TOC -->
+* [Declaration](#declaration)
+  * [Gradle](#gradle)
+  * [Maven](#maven)
+* [Usage](#usage)
+  * [Comparison](#comparison)
+  * [Result](#result)
+  * [Visitor](#visitor)
+  * [Output](#output)
+  * [Allure Report](#allure-report)
+<!-- TOC -->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Declarations](#declarations)
-  - [Gradle](#gradle)
-  - [Maven](#maven)
-- [Usages](#usages)
-  - [Comparison](#comparison)
-  - [Comparison Result](#comparison-result)
-  - [Allure Report](#allure-report)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Declarations
+# Declaration
 ## Gradle
-_Add dependency to `build.gradle`_
+Add dependency to `build.gradle`.
 ```gradle
 implementation("com.github.ngoanh2n:image-comparator:1.0.1")
 ```
 
 ## Maven
-_Add dependency to `pom.xml`_
+Add dependency to `pom.xml`.
 ```xml
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
@@ -41,30 +39,50 @@ _Add dependency to `pom.xml`_
 </dependency>
 ```
 
-# Usages
+# Usage
 ## Comparison
 ```java
-// Build comparison options to navigate behaviors of comparison process
-ImageComparisonOptions options = ImageComparisonOptions.builder()
-        //.setDeviation(0.015) // 0.015 = 1.5%
-        .setDisregardColor(Color.GRAY)
-        .setDifferenceColor(Color.RED)
+ImageComparisonOptions options = ImageComparisonOptions
+        .builder()
+        .setAllowedDeviation(0.05)       // Default to 0.0
+        .setDifferenceColor(Color.CYAN)  // Default to Color.RED
         .build();
-
-// Do comparison
 ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
 ```
 
-## Comparison Result
+## Result
+`ImageComparisonResult` is the result of `ImageComparator`.
 ```java
-ImageComparisonResult.isDifferent()
-ImageComparisonResult.getDiffSize()
-ImageComparisonResult.getDifImage()
-ImageComparisonResult.getAllowedDeviation()
-ImageComparisonResult.getCurrentDeviation()
+boolean isDifferent = ImageComparisonResult.isDifferent();
+int diffSize = ImageComparisonResult.getDiffSize();
+BufferedImage diffImage = ImageComparisonResult.getDiffImage();
+double allowedDeviation = ImageComparisonResult.getAllowedDeviation();
+double currentDeviation = ImageComparisonResult.getCurrentDeviation();
 ```
 
-_By default, the diff image which is created after comparison is saved as name `build/ngoanh2n/img/{yyyyMMdd.HHmmss.SSS}.png`_
+## Visitor
+`ImageComparisonVisitor` for walking through `ImageComparator`.
+- `ImageComparisonVisitor.comparisonStarted(ImageComparisonOptions, BufferedImage, BufferedImage)`
+- `ImageComparisonVisitor.comparisonFinished(ImageComparisonOptions, BufferedImage, BufferedImage, ImageComparisonResult)`
+
+## Output
+`ImageComparisonOutput` for writing comparison output files to specified location.<br>
+An implementation of `ImageComparisonVisitor`.
+- The output is always created at `build/ngoanh2n/img/{yyyyMMdd.HHmmss.SSS}` by default
+- Use `ImageComparisonResultOptions` to adjust the output behaviors. And set to `ImageComparisonOptions`
+  ```java
+  ImageComparisonResultOptions resultOptions = ImageComparisonResultOptions
+         .builder()
+         .writeOutputs(false)                       // Default to true
+         //.setLocation(Paths.get("build/custom"))  // Default to build/ngoanh2n/img
+         .build();
+  ImageComparisonOptions options = ImageComparisonOptions
+         .builder()
+         .setResultOptions(resultOptions)           // Default to ImageComparisonResultOptions.defaults()
+         .build();
+  ```
 
 ## Allure Report
-Your project is using Allure as a report framework, `image-comparator-allure` should be used. ([README](image-comparator-allure#readme))
+When using Allure as a report framework, should use
+<a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator-allure">com.github.ngoanh2n:image-comparator-allure</a>.<br>
+`image-comparator-allure` [README](image-comparator-allure#readme).
