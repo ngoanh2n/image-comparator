@@ -3,9 +3,16 @@ package com.github.ngoanh2n.img;
 import java.awt.image.BufferedImage;
 
 /**
- * The result of {@link ImageComparator}.
+ * The result of {@link ImageComparator}.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 public interface ImageComparisonResult {
     /**
@@ -30,7 +37,7 @@ public interface ImageComparisonResult {
     BufferedImage getDiffImage();
 
     /**
-     * Get the deviation you have set by {@link ImageComparisonOptions.Builder#setDeviation(double)}.
+     * Get the deviation you have set by {@link ImageComparisonOptions.Builder#setAllowedDeviation(double)}.
      *
      * @return Allowed deviation.
      */

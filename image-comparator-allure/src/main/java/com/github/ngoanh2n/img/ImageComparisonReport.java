@@ -16,22 +16,31 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Write Allure results while comparing.
+ * Write Allure results while comparing.<br><br>
+ *
+ * <b>System Property</b>
+ * <ul>
+ *     <li>{@code ngoanh2n.img.includeSource}<br>
+ *         Indicate which attaches image sources to Allure report. Default to {@code true}.
+ *     </li>
+ *     <li>{@code ngoanh2n.img.includeResult}<br>
+ *         Indicate which attaches comparison result (diff image and deviation) to Allure report. Default to {@code true}.
+ *     </li>
+ * </ul>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator-allure">com.github.ngoanh2n:image-comparator-allure</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 public class ImageComparisonReport implements ImageComparisonVisitor {
-    /**
-     * Indicate which attaches image sources to Allure report.<br>
-     * Default to {@code true}.
-     */
-    public static final Property<Boolean> includeSource = Property.ofBoolean("ngoanh2n.img.includeSource", true);
-    /**
-     * Indicate which attaches comparison result (diff image and deviation) to Allure report.<br>
-     * Default to {@code true}.
-     */
-    public static final Property<Boolean> includeResult = Property.ofBoolean("ngoanh2n.img.includeResult", true);
     private static final Logger log = LoggerFactory.getLogger(ImageComparisonReport.class);
+    private static final Property<Boolean> includeSource = Property.ofBoolean("ngoanh2n.img.includeSource", true);
+    private static final Property<Boolean> includeResult = Property.ofBoolean("ngoanh2n.img.includeResult", true);
 
     //-------------------------------------------------------------------------------//
 
@@ -41,7 +50,7 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
     /**
      * Default constructor.
      */
-    public ImageComparisonReport() { /* No implementation necessary */ }
+    public ImageComparisonReport() { /**/ }
 
     //-------------------------------------------------------------------------------//
 

@@ -7,16 +7,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Adjust behaviors of {@link ImageComparisonResult}.
+ * Adjust behaviors of {@link ImageComparisonResult} and {@link ImageComparisonOutput}.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 @ParametersAreNonnullByDefault
 public interface ImageComparisonResultOptions {
     /**
-     * Get {@link ImageComparisonResultOptions.Builder} class where allows to build your {@link ImageComparisonResultOptions}.
+     * Get {@link Builder} class where allows to build your {@link ImageComparisonResultOptions}.
      *
-     * @return A {@link ImageComparisonResultOptions.Builder}.
+     * @return A {@link Builder}.
      */
     static Builder builder() {
         return new Builder();
@@ -34,18 +41,18 @@ public interface ImageComparisonResultOptions {
     //-------------------------------------------------------------------------------//
 
     /**
-     * Where you want to store comparison result output file.
+     * Where you want to store comparison result output files.
      *
      * @return The path to location.
      */
     Path location();
 
     /**
-     * Whether wrote output file.
+     * Whether wrote output files.
      *
-     * @return Indicate to write output file.
+     * @return Indicate to write output files.
      */
-    boolean writeOutput();
+    boolean writeOutputs();
 
     //===============================================================================//
 
@@ -54,21 +61,21 @@ public interface ImageComparisonResultOptions {
      */
     final class Builder {
         private Path location;
-        private boolean writeOutput;
+        private boolean writeOutputs;
 
         private Builder() {
             this.location = Paths.get("build/ngoanh2n/img");
-            this.writeOutput = true;
+            this.writeOutputs = true;
         }
 
         /**
-         * Set location where you want to store comparison result output file.
+         * Set location where you want to store comparison result output files.
          *
-         * @param value The path to store output.
-         * @return {@link Builder}.
+         * @param path The path to location.
+         * @return The current {@link Builder}.
          */
-        public Builder setLocation(Path value) {
-            this.location = Preconditions.checkNotNull(value, "path cannot not be null");
+        public Builder setLocation(Path path) {
+            this.location = Preconditions.checkNotNull(path, "path cannot not be null");
             return this;
         }
 
@@ -76,17 +83,17 @@ public interface ImageComparisonResultOptions {
          * Indicate which writes output files.
          *
          * @param enabled The flag whether that includes or not.
-         * @return {@link Builder}.
+         * @return The current {@link Builder}.
          */
-        public Builder writeOutput(boolean enabled) {
-            this.writeOutput = enabled;
+        public Builder writeOutputs(boolean enabled) {
+            this.writeOutputs = enabled;
             return this;
         }
 
         /**
          * Build {@link ImageComparisonResultOptions} based on {@link Builder}.
          *
-         * @return {@link ImageComparisonResultOptions}.
+         * @return A {@link ImageComparisonResultOptions}.
          */
         public ImageComparisonResultOptions build() {
             return new ImageComparisonResultOptions() {
@@ -96,8 +103,8 @@ public interface ImageComparisonResultOptions {
                 }
 
                 @Override
-                public boolean writeOutput() {
-                    return writeOutput;
+                public boolean writeOutputs() {
+                    return writeOutputs;
                 }
             };
         }

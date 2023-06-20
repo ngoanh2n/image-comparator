@@ -3,30 +3,38 @@ package com.github.ngoanh2n.img;
 import java.awt.image.BufferedImage;
 
 /**
- * Use to walk through {@link ImageComparator}.<br>
- * How to build the service provider:<br>
+ * Use to walk through {@link ImageComparator}.<br><br>
+ *
+ * <b>Build the service provider:</b>
+ * <ol>
+ *      <li>Create a class that implements SPI {@link ImageComparisonVisitor}
+ *          <pre>{@code
+ *              package com.company.project.impl;
+ *
+ *              import com.github.ngoanh2n.img.ImageComparisonVisitor;
+ *
+ *              public class MyComparisonVisitor implements ImageComparisonVisitor {
+ *                  ...IMPLEMENTED METHODS...
+ *              }
+ *          }</pre>
+ *      </li>
+ *      <li>Create a provider configuration file
+ *          <ol>
+ *              <li>Location: {@code resources/META-INF/services}</li>
+ *              <li>Name: {@code com.github.ngoanh2n.img.ImageComparisonVisitor}</li>
+ *              <li>Content: {@code com.company.project.impl.MyComparisonVisitor}</li>
+ *          </ol>
+ *      </li>
+ * </ol>
+ *
+ * <em>Repository:</em>
  * <ul>
- *      <li>1. Create a class that implements SPI {@link ImageComparisonVisitor}
- *      <pre>{@code
- *      package com.company.project.impl;
- *
- *      import com.github.ngoanh2n.img.ImageComparisonVisitor;
- *
- *      public class MyComparisonVisitor implements ImageComparisonVisitor {
- *          //
- *          // IMPLEMENTED METHODS
- *          //
- *      }
- *      }</pre>
- *      <li>2. Create a provider configuration file:
- *      <ul>
- *          <li>Location: {@code resources/META-INF/services}
- *          <li>Name: {@code com.github.ngoanh2n.img.ImageComparisonVisitor}
- *          <li>Content: {@code com.company.project.impl.MyComparisonVisitor}
- *      </ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
  * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 public interface ImageComparisonVisitor {
     /**
