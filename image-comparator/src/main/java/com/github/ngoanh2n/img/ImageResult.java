@@ -3,7 +3,14 @@ package com.github.ngoanh2n.img;
 import java.awt.image.BufferedImage;
 
 /**
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
+ * </ul>
+ *
  * @author ngoanh2n
+ * @since 2021
  */
 class ImageResult implements ImageComparisonResult {
     private final int diffSize;
@@ -14,7 +21,7 @@ class ImageResult implements ImageComparisonResult {
     ImageResult(ImageComparisonSources comparisonSources, ImageComparisonOptions options) {
         this.diffSize = comparisonSources.getSize();
         this.diffImage = comparisonSources.getImage();
-        this.allowedDeviation = options.deviation();
+        this.allowedDeviation = options.allowedDeviation();
 
         int width = comparisonSources.getMaxWidth();
         int height = comparisonSources.getMaxHeight();

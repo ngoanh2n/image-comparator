@@ -16,13 +16,67 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 /**
- * Starting point to compare 2 images.
+ * Compare 2 image files.<br><br>
+ *
+ * <b>Comparison</b>
+ * <pre>{@code
+ *     ImageComparisonOptions options = ImageComparisonOptions
+ *             .builder()
+ *             .setAllowedDeviation(0.05)       // Default to 0.0
+ *             .setDifferenceColor(Color.CYAN)  // Default to Color.RED
+ *             .build();
+ *     ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
+ * }</pre><br>
+ *
+ * <b>Result</b><br>
+ * {@link ImageComparisonResult} is the result of {@link ImageComparator}.
+ * <pre>{@code
+ *      boolean isDifferent = ImageComparisonResult.isDifferent();
+ *      int diffSize = ImageComparisonResult.getDiffSize();
+ *      BufferedImage diffImage = ImageComparisonResult.getDiffImage();
+ *      double allowedDeviation = ImageComparisonResult.getAllowedDeviation();
+ *      double currentDeviation = ImageComparisonResult.getCurrentDeviation();
+ * }</pre><br>
+ *
+ * <b>Visitor</b><br>
+ * {@link ImageComparator} for walking through {@link ImageComparator}.
  * <ul>
- *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage)}</li>
- *     <li>{@link ImageComparisonResult} = {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions)}</li>
+ *     <li>{@link ImageComparisonVisitor#comparisonStarted(ImageComparisonOptions, BufferedImage, BufferedImage)}</li>
+ *     <li>{@link ImageComparisonVisitor#comparisonFinished(ImageComparisonOptions, BufferedImage, BufferedImage, ImageComparisonResult)}</li>
+ * </ul>
+ *
+ * <b>Output</b><br>
+ * {@link ImageComparisonOutput} for writing comparison output files to specified location.<br>
+ * An implementation of {@link ImageComparisonVisitor}.
+ * <ul>
+ *     <li>The output is always created at {@code build/ngoanh2n/img/{yyyyMMdd.HHmmss.SSS}} by default</li>
+ *     <li>Use {@link ImageComparisonResultOptions} to adjust the output behaviors. And set to {@link ImageComparisonOptions}
+ *         <pre>{@code
+ *              ImageComparisonResultOptions resultOptions = ImageComparisonResultOptions
+ *                     .builder()
+ *                     .writeOutputs(false)                         // Default to true
+ *                     //.setLocation(Paths.get("build/custom"))    // Default to build/ngoanh2n/img
+ *                     .build();
+ *              ImageComparisonOptions options = ImageComparisonOptions
+ *                      .builder()
+ *                      .setResultOptions(resultOptions)            // Default to ImageComparisonResultOptions.defaults()
+ *                      .build();
+ *         }</pre>
+ *     </li>
+ * </ul>
+ *
+ * <b>Allure Report</b><br>
+ * When using Allure as a report framework, should use
+ * <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator-allure">com.github.ngoanh2n:image-comparator-allure</a>.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
  * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 @ParametersAreNonnullByDefault
 public final class ImageComparator {
@@ -152,7 +206,7 @@ public final class ImageComparator {
         ServiceLoader<ImageComparisonVisitor> serviceLoader = ServiceLoader.load(ImageComparisonVisitor.class);
         ImmutableList<ImageComparisonVisitor> visitors = ImmutableList.copyOf(serviceLoader.iterator());
 
-        if (!options.resultOptions().writeOutput()) {
+        if (!options.resultOptions().writeOutputs()) {
             visitors = ImmutableList.copyOf(Collections2.filter(visitors,
                     visitor -> !visitor.getClass().getName().equals(ImageComparisonOutput.class.getName())));
         }

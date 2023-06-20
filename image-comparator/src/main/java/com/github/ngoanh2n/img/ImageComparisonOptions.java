@@ -3,15 +3,22 @@ package com.github.ngoanh2n.img;
 import java.awt.*;
 
 /**
- * Adjust behaviors of {@link ImageComparator}.
+ * Adjust behaviors of {@link ImageComparator}.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/image-comparator">ngoanh2n/image-comparator</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/image-comparator">com.github.ngoanh2n:image-comparator</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2021
  */
 public interface ImageComparisonOptions {
     /**
      * Get {@link Builder} class where allows to build your {@link ImageComparisonOptions}.
      *
-     * @return {@link ImageComparisonOptions.Builder}.
+     * @return A {@link Builder}.
      */
     static Builder builder() {
         return new Builder();
@@ -20,7 +27,7 @@ public interface ImageComparisonOptions {
     /**
      * Get {@link ImageComparisonOptions} with default options.
      *
-     * @return {@link ImageComparisonOptions}.
+     * @return A {@link ImageComparisonOptions}.
      */
     static ImageComparisonOptions defaults() {
         return builder().build();
@@ -33,7 +40,7 @@ public interface ImageComparisonOptions {
      *
      * @return Allowed deviation.
      */
-    double deviation();
+    double allowedDeviation();
 
     /**
      * Color for decorating at ignored pixels after compared.
@@ -50,9 +57,9 @@ public interface ImageComparisonOptions {
     Color differenceColor();
 
     /**
-     * The comparison result options to adjust your {@link ImageComparisonResult} output.
+     * The comparison result options to adjust behaviors of {@link ImageComparisonResult}.
      *
-     * @return {@link ImageComparisonResultOptions}.
+     * @return A {@link ImageComparisonResultOptions}.
      */
     ImageComparisonResultOptions resultOptions();
 
@@ -78,9 +85,9 @@ public interface ImageComparisonOptions {
          * Set deviation for making a judgment on whether images are different corresponds to the allowed deviation.
          *
          * @param value Allowed deviation.
-         * @return The current {@link ImageComparisonOptions.Builder}.
+         * @return The current {@link Builder}.
          */
-        public Builder setDeviation(double value) {
+        public Builder setAllowedDeviation(double value) {
             this.deviation = value;
             return this;
         }
@@ -89,7 +96,7 @@ public interface ImageComparisonOptions {
          * Set color for decorating at ignored pixels after compared.
          *
          * @param value A {@link Color}.
-         * @return The current {@link ImageComparisonOptions.Builder}.
+         * @return The current {@link Builder}.
          */
         public Builder setDisregardColor(Color value) {
             this.disregardColor = value;
@@ -100,7 +107,7 @@ public interface ImageComparisonOptions {
          * Set color for decorating at different pixels after compared.
          *
          * @param value A {@link Color}.
-         * @return The current {@link ImageComparisonOptions.Builder}.
+         * @return The current {@link Builder}.
          */
         public Builder setDifferenceColor(Color value) {
             this.differenceColor = value;
@@ -111,7 +118,7 @@ public interface ImageComparisonOptions {
          * Set {@link ImageComparisonResultOptions} to adjust {@link ImageComparisonResult} output.
          *
          * @param value A {@link ImageComparisonResultOptions}.
-         * @return The current {@link ImageComparisonOptions.Builder}.
+         * @return The current {@link Builder}.
          */
         public Builder setResultOptions(ImageComparisonResultOptions value) {
             this.resultOptions = value;
@@ -119,14 +126,14 @@ public interface ImageComparisonOptions {
         }
 
         /**
-         * Build {@link ImageComparisonOptions} based on {@link ImageComparisonOptions.Builder}.
+         * Build {@link ImageComparisonOptions} based on {@link Builder}.
          *
-         * @return {@link ImageComparisonOptions}.
+         * @return A {@link ImageComparisonOptions}.
          */
         public ImageComparisonOptions build() {
             return new ImageComparisonOptions() {
                 @Override
-                public double deviation() {
+                public double allowedDeviation() {
                     return deviation;
                 }
 
