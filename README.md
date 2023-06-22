@@ -44,8 +44,8 @@ Add dependency to `pom.xml`.
 ```java
 ImageComparisonOptions options = ImageComparisonOptions
         .builder()
-        .setAllowedDeviation(0.05)       // Default to 0.0
-        .setDifferenceColor(Color.CYAN)  // Default to Color.RED
+        .setAllowedDeviation(0.05)      // Default to 0.0
+        .setDiffColor(Color.CYAN)       // Default to Color.RED
         .build();
 ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
 ```
