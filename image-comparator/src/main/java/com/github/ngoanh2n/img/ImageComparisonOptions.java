@@ -54,7 +54,7 @@ public interface ImageComparisonOptions {
      *
      * @return A {@link Color}.
      */
-    Color disregardColor();
+    Color ignoredColor();
 
     /**
      * The comparison result options to adjust behaviors of {@link ImageComparisonResult}.
@@ -71,13 +71,13 @@ public interface ImageComparisonOptions {
     final class Builder {
         private double deviation;
         private Color diffColor;
-        private Color disregardColor;
+        private Color ignoredColor;
         private ImageComparisonResultOptions resultOptions;
 
         private Builder() {
             this.deviation = 0.0;
             this.diffColor = Color.RED;
-            this.disregardColor = Color.GRAY;
+            this.ignoredColor = Color.GRAY;
             this.resultOptions = ImageComparisonResultOptions.defaults();
         }
 
@@ -109,8 +109,8 @@ public interface ImageComparisonOptions {
          * @param value A {@link Color}.
          * @return The current {@link Builder}.
          */
-        public Builder setDisregardColor(Color value) {
-            this.disregardColor = value;
+        public Builder setIgnoredColor(Color value) {
+            this.ignoredColor = value;
             return this;
         }
 
@@ -143,8 +143,8 @@ public interface ImageComparisonOptions {
                 }
 
                 @Override
-                public Color disregardColor() {
-                    return disregardColor;
+                public Color ignoredColor() {
+                    return ignoredColor;
                 }
 
                 @Override

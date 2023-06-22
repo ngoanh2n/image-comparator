@@ -26,7 +26,7 @@ class ImageSource {
 
     //-------------------------------------------------------------------------------//
 
-    static ImageSource disregard(ImageComparisonSource exp, ImageComparisonSource act) {
+    static ImageSource createIgnore(ImageComparisonSource exp, ImageComparisonSource act) {
         Set<Rectangle> rectangles = new HashSet<>();
         Set<Rectangle> expRectangles = exp.getRectanglesToIgnore();
         Set<Rectangle> actRectangles = act.getRectanglesToIgnore();
