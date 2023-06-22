@@ -125,7 +125,7 @@ public final class ImageComparator {
 
         if (!equalBytes(exp, act)) {
             ImageSource diffSource = ImageSource.createDiff(expComparisonSource, actComparisonSource);
-            ImageSource disregardSource = ImageSource.disregard(expComparisonSource, actComparisonSource);
+            ImageSource ignoredSource = ImageSource.createIgnore(expComparisonSource, actComparisonSource);
 
             int width = comparisonSources.getMaxWidth();
             int height = comparisonSources.getMaxHeight();
@@ -133,8 +133,8 @@ public final class ImageComparator {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     Point point = new Point(x, y);
-                    if (disregardSource.contain(point)) {
-                        comparisonSources.addDisregard(point);
+                    if (ignoredSource.contain(point)) {
+                        comparisonSources.addIgnoredPoint(point);
                         continue;
                     }
                     if (!comparisonSources.contain(point)) {

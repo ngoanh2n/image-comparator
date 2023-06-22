@@ -21,7 +21,7 @@ class ImageComparisonSources {
     private final ImageComparisonOptions options;
     private final BufferedImage image;
     private final Set<Point> diffPoints;
-    private final Set<Point> disregardPoints;
+    private final Set<Point> ignoredPoints;
     private boolean marked;
 
     ImageComparisonSources(ImageComparisonSource exp, ImageComparisonSource act, ImageComparisonOptions options) {
@@ -31,13 +31,13 @@ class ImageComparisonSources {
         this.marked = false;
         this.image = createImage();
         this.diffPoints = new HashSet<>();
-        this.disregardPoints = new HashSet<>();
+        this.ignoredPoints = new HashSet<>();
     }
 
     //-------------------------------------------------------------------------------//
 
-    void addDisregard(Point point) {
-        disregardPoints.add(point);
+    void addIgnoredPoint(Point point) {
+        ignoredPoints.add(point);
     }
 
     void addDiffPoint(Point point) {
@@ -67,8 +67,8 @@ class ImageComparisonSources {
 
     BufferedImage getImage() {
         if (!marked) {
-            setRGB(options.disregardColor(), disregardPoints);
             setRGB(options.diffColor(), diffPoints);
+            setRGB(options.ignoredColor(), ignoredPoints);
             marked = true;
         }
         return image;
