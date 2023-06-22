@@ -43,18 +43,18 @@ public interface ImageComparisonOptions {
     double allowedDeviation();
 
     /**
+     * Color for decorating at different pixels after compared.
+     *
+     * @return A {@link Color}.
+     */
+    Color diffColor();
+
+    /**
      * Color for decorating at ignored pixels after compared.
      *
      * @return A {@link Color}.
      */
     Color disregardColor();
-
-    /**
-     * Color for decorating at different pixels after compared.
-     *
-     * @return A {@link Color}.
-     */
-    Color differenceColor();
 
     /**
      * The comparison result options to adjust behaviors of {@link ImageComparisonResult}.
@@ -70,14 +70,14 @@ public interface ImageComparisonOptions {
      */
     final class Builder {
         private double deviation;
+        private Color diffColor;
         private Color disregardColor;
-        private Color differenceColor;
         private ImageComparisonResultOptions resultOptions;
 
         private Builder() {
             this.deviation = 0.0;
+            this.diffColor = Color.RED;
             this.disregardColor = Color.GRAY;
-            this.differenceColor = Color.RED;
             this.resultOptions = ImageComparisonResultOptions.defaults();
         }
 
@@ -93,6 +93,17 @@ public interface ImageComparisonOptions {
         }
 
         /**
+         * Set color for decorating at different pixels after compared.
+         *
+         * @param value A {@link Color}.
+         * @return The current {@link Builder}.
+         */
+        public Builder setDiffColor(Color value) {
+            this.diffColor = value;
+            return this;
+        }
+
+        /**
          * Set color for decorating at ignored pixels after compared.
          *
          * @param value A {@link Color}.
@@ -100,17 +111,6 @@ public interface ImageComparisonOptions {
          */
         public Builder setDisregardColor(Color value) {
             this.disregardColor = value;
-            return this;
-        }
-
-        /**
-         * Set color for decorating at different pixels after compared.
-         *
-         * @param value A {@link Color}.
-         * @return The current {@link Builder}.
-         */
-        public Builder setDifferenceColor(Color value) {
-            this.differenceColor = value;
             return this;
         }
 
@@ -138,13 +138,13 @@ public interface ImageComparisonOptions {
                 }
 
                 @Override
-                public Color disregardColor() {
-                    return disregardColor;
+                public Color diffColor() {
+                    return diffColor;
                 }
 
                 @Override
-                public Color differenceColor() {
-                    return differenceColor;
+                public Color disregardColor() {
+                    return disregardColor;
                 }
 
                 @Override

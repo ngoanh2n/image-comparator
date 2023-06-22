@@ -20,8 +20,8 @@ class ImageComparisonSources {
     private final ImageComparisonSource act;
     private final ImageComparisonOptions options;
     private final BufferedImage image;
+    private final Set<Point> diffPoints;
     private final Set<Point> disregardPoints;
-    private final Set<Point> differencePoints;
     private boolean marked;
 
     ImageComparisonSources(ImageComparisonSource exp, ImageComparisonSource act, ImageComparisonOptions options) {
@@ -30,8 +30,8 @@ class ImageComparisonSources {
         this.options = options;
         this.marked = false;
         this.image = createImage();
+        this.diffPoints = new HashSet<>();
         this.disregardPoints = new HashSet<>();
-        this.differencePoints = new HashSet<>();
     }
 
     //-------------------------------------------------------------------------------//
@@ -40,8 +40,8 @@ class ImageComparisonSources {
         disregardPoints.add(point);
     }
 
-    void addDifference(Point point) {
-        differencePoints.add(point);
+    void addDiffPoint(Point point) {
+        diffPoints.add(point);
     }
 
     boolean contain(Point point) {
@@ -54,7 +54,7 @@ class ImageComparisonSources {
     }
 
     int getSize() {
-        return differencePoints.size();
+        return diffPoints.size();
     }
 
     int getMaxWidth() {
@@ -68,7 +68,7 @@ class ImageComparisonSources {
     BufferedImage getImage() {
         if (!marked) {
             setRGB(options.disregardColor(), disregardPoints);
-            setRGB(options.differenceColor(), differencePoints);
+            setRGB(options.diffColor(), diffPoints);
             marked = true;
         }
         return image;

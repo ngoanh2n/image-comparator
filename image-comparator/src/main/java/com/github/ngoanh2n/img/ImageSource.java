@@ -42,7 +42,7 @@ class ImageSource {
         return new ImageSource(rectangles);
     }
 
-    static ImageSource difference(ImageComparisonSource exp, ImageComparisonSource act) {
+    static ImageSource createDiff(ImageComparisonSource exp, ImageComparisonSource act) {
         Set<Rectangle> rectangles = new LinkedHashSet<>();
         rectangles.addAll(exp.getRectanglesToCompare());
         rectangles.addAll(act.getRectanglesToCompare());

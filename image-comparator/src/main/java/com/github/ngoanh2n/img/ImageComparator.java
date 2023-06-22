@@ -23,7 +23,7 @@ import java.util.ServiceLoader;
  *     ImageComparisonOptions options = ImageComparisonOptions
  *             .builder()
  *             .setAllowedDeviation(0.05)       // Default to 0.0
- *             .setDifferenceColor(Color.CYAN)  // Default to Color.RED
+ *             .setDiffColor(Color.CYAN)        // Default to Color.RED
  *             .build();
  *     ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
  * }</pre><br>
@@ -124,8 +124,8 @@ public final class ImageComparator {
         ImageComparisonSources comparisonSources = new ImageComparisonSources(expComparisonSource, actComparisonSource, options);
 
         if (!equalBytes(exp, act)) {
+            ImageSource diffSource = ImageSource.createDiff(expComparisonSource, actComparisonSource);
             ImageSource disregardSource = ImageSource.disregard(expComparisonSource, actComparisonSource);
-            ImageSource differenceSource = ImageSource.difference(expComparisonSource, actComparisonSource);
 
             int width = comparisonSources.getMaxWidth();
             int height = comparisonSources.getMaxHeight();
@@ -138,12 +138,12 @@ public final class ImageComparator {
                         continue;
                     }
                     if (!comparisonSources.contain(point)) {
-                        comparisonSources.addDifference(point);
+                        comparisonSources.addDiffPoint(point);
                         continue;
                     }
-                    if (differenceSource.contain(point)) {
+                    if (diffSource.contain(point)) {
                         if (comparisonSources.containWithRGB(point)) {
-                            comparisonSources.addDifference(point);
+                            comparisonSources.addDiffPoint(point);
                         }
                     }
                 }
