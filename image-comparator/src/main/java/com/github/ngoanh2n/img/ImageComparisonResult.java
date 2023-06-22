@@ -16,16 +16,16 @@ import java.awt.image.BufferedImage;
  */
 public interface ImageComparisonResult {
     /**
-     * Whether there is any difference between expected BufferedImage and actual BufferedImage.
+     * Whether there is any diff between expected BufferedImage and actual BufferedImage.
      *
      * @return Indicate expected BufferedImage is different against to actual BufferedImage.
      */
     boolean isDifferent();
 
     /**
-     * Gets the number of difference points after comparison.
+     * Gets the number of diff points after comparison.
      *
-     * @return The number of difference points
+     * @return The number of diff points
      */
     int getDiffSize();
 
