@@ -36,13 +36,6 @@ public interface ImageComparisonOptions {
     //-------------------------------------------------------------------------------//
 
     /**
-     * The deviation for making a judgment on whether images are different corresponds to the allowed deviation.
-     *
-     * @return Allowed deviation.
-     */
-    double allowedDeviation();
-
-    /**
      * Color for decorating at different pixels after compared.
      *
      * @return A {@link Color}.
@@ -55,6 +48,13 @@ public interface ImageComparisonOptions {
      * @return A {@link Color}.
      */
     Color ignoredColor();
+
+    /**
+     * The deviation for making a judgment on whether images are different corresponds to the allowed deviation.
+     *
+     * @return Allowed deviation.
+     */
+    double allowedDeviation();
 
     /**
      * The comparison result options to adjust behaviors of {@link ImageComparisonResult}.
@@ -82,17 +82,6 @@ public interface ImageComparisonOptions {
         }
 
         /**
-         * Set deviation for making a judgment on whether images are different corresponds to the allowed deviation.
-         *
-         * @param value Allowed deviation.
-         * @return The current {@link Builder}.
-         */
-        public Builder setAllowedDeviation(double value) {
-            this.deviation = value;
-            return this;
-        }
-
-        /**
          * Set color for decorating at different pixels after compared.
          *
          * @param value A {@link Color}.
@@ -115,6 +104,17 @@ public interface ImageComparisonOptions {
         }
 
         /**
+         * Set deviation for making a judgment on whether images are different corresponds to the allowed deviation.
+         *
+         * @param value Allowed deviation.
+         * @return The current {@link Builder}.
+         */
+        public Builder setAllowedDeviation(double value) {
+            this.deviation = value;
+            return this;
+        }
+
+        /**
          * Set {@link ImageComparisonResultOptions} to adjust {@link ImageComparisonResult} output.
          *
          * @param value A {@link ImageComparisonResultOptions}.
@@ -133,11 +133,6 @@ public interface ImageComparisonOptions {
         public ImageComparisonOptions build() {
             return new ImageComparisonOptions() {
                 @Override
-                public double allowedDeviation() {
-                    return deviation;
-                }
-
-                @Override
                 public Color diffColor() {
                     return diffColor;
                 }
@@ -145,6 +140,11 @@ public interface ImageComparisonOptions {
                 @Override
                 public Color ignoredColor() {
                     return ignoredColor;
+                }
+
+                @Override
+                public double allowedDeviation() {
+                    return deviation;
                 }
 
                 @Override
