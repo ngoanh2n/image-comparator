@@ -92,13 +92,15 @@ public interface ImageComparisonOptions {
             return this;
         }
 
+
         /**
-         * Set color for decorating at ignored pixels after compared.
+         * Set color for decorating at ignored pixels after compared.<br>
+         * TODO: Handle to pass rectangles to ignore
          *
          * @param value A {@link Color}.
          * @return The current {@link Builder}.
          */
-        public Builder setIgnoredColor(Color value) {
+        private Builder setIgnoredColor(Color value) {
             this.ignoredColor = value;
             return this;
         }
