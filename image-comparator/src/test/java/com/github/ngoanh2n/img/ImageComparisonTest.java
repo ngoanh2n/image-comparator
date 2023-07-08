@@ -12,9 +12,9 @@ import java.io.IOException;
 /**
  * @author ngoanh2n
  */
-public class ImageComparatorTest {
+public class ImageComparisonTest {
     @Test
-    void equal() throws IOException {
+    void noDiff() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/exp/image.jpg");
 
@@ -23,7 +23,7 @@ public class ImageComparatorTest {
     }
 
     @Test
-    void different() throws IOException {
+    void hasDiff() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/act/image.jpg");
 

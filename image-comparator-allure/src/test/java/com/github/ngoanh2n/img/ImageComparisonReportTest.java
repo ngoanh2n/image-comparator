@@ -14,11 +14,11 @@ import java.io.IOException;
 /**
  * @author ngoanh2n
  */
-@Epic("Image Comparator")
+@Epic("Image Comparison")
 public class ImageComparisonReportTest {
     @Test
-    @Feature("Image Comparator: Equal")
-    void equal() throws IOException {
+    @Feature("Image Comparison: No Diff")
+    void noDiff() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/exp/image.jpg");
 
@@ -27,8 +27,8 @@ public class ImageComparisonReportTest {
     }
 
     @Test
-    @Feature("Image Comparator: Has Differences")
-    void different() throws IOException {
+    @Feature("Image Comparison: Has Diff")
+    void hasDiff() throws IOException {
         BufferedImage exp = getImage("com/github/ngoanh2n/img/exp/image.jpg");
         BufferedImage act = getImage("com/github/ngoanh2n/img/act/image.jpg");
 
