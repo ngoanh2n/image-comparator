@@ -41,23 +41,43 @@ Add dependency to `pom.xml`.
 
 # Usage
 ## Comparison
-```java
-ImageComparisonOptions options = ImageComparisonOptions
-        .builder()
-        .setAllowedDeviation(0.05)      // Default to 0.0
-        .setDiffColor(Color.CYAN)       // Default to Color.RED
-        .build();
-ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
-```
+1. Compare 2 images
+    ```java
+    ImageComparisonOptions options = ImageComparisonOptions
+            .builder()
+            .setAllowedDeviation(0.05)      // Default to 0.0
+            .setDiffColor(Color.CYAN)       // Default to Color.RED
+            .build();
+    ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
+    ```
+2. Compare 2 image directories
+    ```java
+    Path expectedImageDir = Paths.get("data/expected");
+    Path actualImageDir = Paths.get("data/actual");
+            
+    ImageComparisonOptions options = ImageComparisonOptions
+            .builder()
+            .setAllowedDeviation(0.05)      // Default to 0.0
+            .setDiffColor(Color.CYAN)       // Default to Color.RED
+            .build();
+    ImageBulkComparisonResult result = ImageComparator.compare(expectedImageDir, actualImageDir, options);
+    ```
 
 ## Result
-`ImageComparisonResult` is the result of `ImageComparator`.
+`ImageComparisonResult` is the result of `ImageComparator.compare(expectedImage, actualImage, options)`.
 ```java
 boolean isDifferent = ImageComparisonResult.isDifferent();
 int diffSize = ImageComparisonResult.getDiffSize();
 BufferedImage diffImage = ImageComparisonResult.getDiffImage();
 double allowedDeviation = ImageComparisonResult.getAllowedDeviation();
 double currentDeviation = ImageComparisonResult.getCurrentDeviation();
+```
+
+`ImageBulkComparisonResult` is the result of `ImageComparator.compare(expectedImageDir, actualImageDir, options)`.
+```java
+boolean hasDiff = ImageBulkComparisonResult.hasDiff();
+int diffTotal = ImageBulkComparisonResult.getDiffTotal();
+List<ImageComparisonResult> diffResults = ImageBulkComparisonResult.getDiffResults();
 ```
 
 ## Visitor
