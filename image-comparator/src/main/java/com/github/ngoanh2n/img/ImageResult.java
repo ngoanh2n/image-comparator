@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.img;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 
 /**
  * <em>Repository:</em>
@@ -57,6 +58,9 @@ class ImageResult implements ImageComparisonResult {
 
     @Override
     public String toString() {
-        return String.format("deviation=[allowed:%s, current:%s]", allowedDeviation, currentDeviation);
+        return new HashMap<String, Double>() {{
+            put("allowedDeviation", getAllowedDeviation());
+            put("currentDeviation", getCurrentDeviation());
+        }}.toString();
     }
 }
