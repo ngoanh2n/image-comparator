@@ -3,7 +3,7 @@ package com.github.ngoanh2n.img;
 import java.awt.image.BufferedImage;
 
 /**
- * The result of {@link ImageComparator}.<br><br>
+ * The result of {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions) ImageComparator.compare(expectedCsvFile, actualCsvFile, options)}.<br><br>
  *
  * <em>Repository:</em>
  * <ul>
