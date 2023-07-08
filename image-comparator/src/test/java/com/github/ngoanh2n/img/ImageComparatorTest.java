@@ -19,7 +19,7 @@ public class ImageComparatorTest {
         BufferedImage act = getImage("com/github/ngoanh2n/img/exp/image.jpg");
 
         ImageComparisonResult result = ImageComparator.compare(exp, act);
-        Assertions.assertFalse(result.isDifferent());
+        Assertions.assertFalse(result.hasDiff());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ImageComparatorTest {
         BufferedImage act = getImage("com/github/ngoanh2n/img/act/image.jpg");
 
         ImageComparisonResult result = ImageComparator.compare(exp, act);
-        Assertions.assertTrue(result.isDifferent());
+        Assertions.assertTrue(result.hasDiff());
     }
 
     private BufferedImage getImage(String resourceName) throws IOException {

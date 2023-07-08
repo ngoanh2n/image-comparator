@@ -74,7 +74,7 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
         attachSource(exp, act);
         attachResult(result);
 
-        if (result.isDifferent()) {
+        if (result.hasDiff()) {
             lifecycle.updateStep(uuid, sr -> sr.setStatus(Status.FAILED));
         } else {
             lifecycle.updateStep(uuid, sr -> sr.setStatus(Status.PASSED));
@@ -93,7 +93,7 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
 
     private void attachResult(ImageComparisonResult result) {
         if (includeResult.getValue()) {
-            if (result.isDifferent()) {
+            if (result.hasDiff()) {
                 attachSource(result.getDiffImage(), "Result: Diff Image");
                 attachDeviation(result);
             }
