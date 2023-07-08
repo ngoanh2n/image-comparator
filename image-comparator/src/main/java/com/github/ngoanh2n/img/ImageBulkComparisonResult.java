@@ -1,4 +1,11 @@
 package com.github.ngoanh2n.img;
 
-public class ImageBulkComparisonResult {
+import java.util.List;
+
+public interface ImageBulkComparisonResult {
+    boolean hasDiff();
+
+    int getDiffTotal();
+
+    List<ImageComparisonResult> getDiffResults();
 }
