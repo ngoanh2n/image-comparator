@@ -4,6 +4,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # Image Comparator for Allure
+<!-- TOC -->
+* [Declaration](#declaration)
+    * [Gradle](#gradle)
+    * [Maven](#maven)
+* [Description](#description)
+* [System Property](#system-property)
+<!-- TOC -->
 When using Allure as a report framework, `image-comparator-allure` should be used.
 
 ![](images/allure-report.png)
@@ -23,6 +30,17 @@ Add to `pom.xml`.
     <artifactId>image-comparator-allure</artifactId>
     <version>1.1.0</version>
 </dependency>
+```
+
+# Description
+You can change comparison description on Allure by creating file `image-comparator-allure.properties` in folder `resources`.<br>
+Default description as below.
+```properties
+subject=Image Comparison
+expImage=Source: Expected Image
+actImage=Source: Actual Image
+resultImage=Result: Diff Image
+resultDeviation=Result: Deviation
 ```
 
 # System Property
