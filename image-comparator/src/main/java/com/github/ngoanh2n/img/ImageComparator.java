@@ -190,10 +190,10 @@ public final class ImageComparator {
             result = new ImageResult(comparisonSources, options);
             visitors.forEach(visitor -> visitor.comparisonFinished(options, exp, act, result));
             log.debug("Image comparison result: {}", result);
-        } catch (Exception e) {
-            String msg = "Error occurred while comparing";
+        } catch (Exception ex) {
+            String msg = "Error occurred while comparing: " + ex.getMessage();
             log.error(msg);
-            throw new RuntimeError(msg, e);
+            throw new RuntimeError(msg, ex);
         } finally {
             long ending = System.currentTimeMillis();
             String format = "[HH 'hours', mm 'minutes', ss 'seconds', SS 'milliseconds']";
