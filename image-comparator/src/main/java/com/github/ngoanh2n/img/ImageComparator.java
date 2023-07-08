@@ -54,7 +54,7 @@ import java.util.stream.Stream;
  * </ol>
  *
  * <b>Result</b><br>
- * {@link ImageComparisonResult} is the result {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions) ImageComparator.compare(expectedImage, actualImage, options)}.
+ * {@link ImageComparisonResult} is the result of {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions) ImageComparator.compare(expectedImage, actualImage, options)}.
  * <pre>{@code
  *      boolean isDifferent = ImageComparisonResult.isDifferent();
  *      int diffSize = ImageComparisonResult.getDiffSize();
