@@ -1,5 +1,6 @@
 package com.github.ngoanh2n.img;
 
+import com.github.ngoanh2n.PropertiesFile;
 import com.github.ngoanh2n.Property;
 import com.github.ngoanh2n.RuntimeError;
 import io.qameta.allure.Allure;
@@ -39,6 +40,7 @@ import java.util.UUID;
  */
 public class ImageComparisonReport implements ImageComparisonVisitor {
     private static final Logger log = LoggerFactory.getLogger(ImageComparisonReport.class);
+    private static final PropertiesFile allureDesc = new PropertiesFile("image-comparator-allure.properties");
     private static final Property<Boolean> includeSource = Property.ofBoolean("ngoanh2n.img.includeSource", true);
     private static final Property<Boolean> includeResult = Property.ofBoolean("ngoanh2n.img.includeResult", true);
 
@@ -62,7 +64,7 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
         uuid = UUID.randomUUID().toString();
         lifecycle = Allure.getLifecycle();
 
-        StepResult result = new StepResult().setName("Image Comparison");
+        StepResult result = new StepResult().setName(allureDesc.getProperty("subject"));
         lifecycle.startStep(uuid, result);
     }
 
@@ -86,15 +88,15 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
 
     private void attachSource(BufferedImage exp, BufferedImage act) {
         if (includeSource.getValue()) {
-            attachSource(exp, "Source: Exp Image");
-            attachSource(act, "Source: Act Image");
+            attachSource(exp, allureDesc.getProperty("expImage"));
+            attachSource(act, allureDesc.getProperty("actImage"));
         }
     }
 
     private void attachResult(ImageComparisonResult result) {
         if (includeResult.getValue()) {
             if (result.hasDiff()) {
-                attachSource(result.getDiffImage(), "Result: Diff Image");
+                attachSource(result.getDiffImage(), allureDesc.getProperty("resultImage"));
                 attachDeviation(result);
             }
         }
@@ -117,6 +119,6 @@ public class ImageComparisonReport implements ImageComparisonVisitor {
         String deviation = String.join("\n",
                 "Allowed: " + result.getAllowedDeviation(),
                 "Current: " + result.getCurrentDeviation());
-        lifecycle.addAttachment("Result: Deviation", "text/plain", "", deviation.getBytes());
+        lifecycle.addAttachment(allureDesc.getProperty("resultDeviation"), "text/plain", "", deviation.getBytes());
     }
 }
