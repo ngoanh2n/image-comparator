@@ -1,5 +1,6 @@
 package com.github.ngoanh2n.img;
 
+import com.github.ngoanh2n.Commons;
 import com.github.ngoanh2n.RuntimeError;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Collections2;
@@ -9,11 +10,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.ServiceLoader;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Compare 2 image files.<br><br>
@@ -116,6 +124,26 @@ public final class ImageComparator {
         return new ImageComparator(exp, act, options).compare();
     }
 
+    public static ImageBulkComparisonResult compare(Path exp, Path act) {
+        return compare(exp, act, ImageComparisonOptions.defaults());
+    }
+
+    public static ImageBulkComparisonResult compare(Path exp, Path act, ImageComparisonOptions options) {
+        log.debug("//-----Bulk Image Comparison-----//");
+        log.debug("Exp image directory: {}", Commons.getRelative(exp));
+        log.debug("Act image directory: {}", Commons.getRelative(act));
+
+        ImageBulkResult result = new ImageBulkResult();
+        List<Map.Entry<Path, Path>> sources = getSources(exp, act);
+
+        for (Map.Entry<Path, Path> source : sources) {
+            BufferedImage actImage = readImage(source.getKey().toFile());
+            BufferedImage expImage = readImage(source.getValue().toFile());
+            result.put(compare(expImage, actImage, options));
+        }
+        return result;
+    }
+
     //-------------------------------------------------------------------------------//
 
     private static ImageComparisonSources doComparison(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
@@ -175,6 +203,51 @@ public final class ImageComparator {
             }
         }
         return true;
+    }
+
+    private static BufferedImage readImage(File file) {
+        try {
+            return ImageIO.read(file);
+        } catch (IOException ex) {
+            String msg = "Error occurred while reading image: " + ex.getMessage();
+            log.error(msg);
+            throw new RuntimeError(msg, ex);
+        }
+    }
+
+    private static List<Map.Entry<Path, Path>> getSources(Path exp, Path act) {
+        try {
+            List<Path> expFiles = getImageFiles(exp);
+            List<Path> actFiles = getImageFiles(act);
+
+            log.debug("Exp CSV files: {}", expFiles.size());
+            log.debug("Act CSV files: {}", actFiles.size());
+            List<Map.Entry<Path, Path>> sources = new ArrayList<>(actFiles.size());
+
+            for (Path actFile : actFiles) {
+                String actTarget = String.valueOf(act.relativize(actFile));
+
+                for (Path expFile : expFiles) {
+                    String expTarget = String.valueOf(exp.relativize(expFile));
+
+                    if (actTarget.equals(expTarget)) {
+                        sources.add(new AbstractMap.SimpleEntry<>(actFile, expFile));
+                        break;
+                    }
+                }
+            }
+            return sources;
+        } catch (IOException ex) {
+            String msg = "Error occurred while reading image files in directory";
+            log.error(msg);
+            throw new RuntimeError(msg, ex);
+        }
+    }
+
+    private static List<Path> getImageFiles(Path path) throws IOException {
+        try (Stream<Path> stream = Files.walk(path)) {
+            return stream.filter(Files::isRegularFile).collect(Collectors.toList());
+        }
     }
 
     //-------------------------------------------------------------------------------//
