@@ -31,7 +31,7 @@ class ImageResult implements ImageComparisonResult {
     //-------------------------------------------------------------------------------//
 
     @Override
-    public boolean isDifferent() {
+    public boolean hasDiff() {
         return !(currentDeviation == 0 || currentDeviation <= allowedDeviation);
     }
 

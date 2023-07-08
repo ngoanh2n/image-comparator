@@ -20,7 +20,7 @@ public interface ImageComparisonResult {
      *
      * @return Indicate expected BufferedImage is different against to actual BufferedImage.
      */
-    boolean isDifferent();
+    boolean hasDiff();
 
     /**
      * Gets the number of diff points after comparison.
