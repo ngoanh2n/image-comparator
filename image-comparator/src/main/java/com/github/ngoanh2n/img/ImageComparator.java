@@ -184,38 +184,31 @@ public final class ImageComparator {
 
     //-------------------------------------------------------------------------------//
 
-    private static ImageComparisonSources doComparison(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
-        ImageComparisonSource expComparisonSource = new ImageComparisonSource(exp);
-        ImageComparisonSource actComparisonSource = new ImageComparisonSource(act);
-        ImageComparisonSources comparisonSources = new ImageComparisonSources(expComparisonSource, actComparisonSource, options);
+    private static ImageComparisonSource doComparison(BufferedImage exp, BufferedImage act, ImageComparisonOptions options) {
+        ImageComparisonSource comparisonSource = new ImageComparisonSource(exp, act, options);
+        ImageSource source = new ImageSource(comparisonSource);
 
         if (!equalBytes(exp, act)) {
-            ImageSource diffSource = ImageSource.createDiff(expComparisonSource, actComparisonSource);
-            ImageSource ignoredSource = ImageSource.createIgnore(expComparisonSource, actComparisonSource);
-
-            int width = comparisonSources.getMaxWidth();
-            int height = comparisonSources.getMaxHeight();
+            int width = comparisonSource.getMaxWidth();
+            int height = comparisonSource.getMaxHeight();
 
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     Point point = new Point(x, y);
-                    if (ignoredSource.contain(point)) {
-                        comparisonSources.addIgnoredPoint(point);
+
+                    if (!comparisonSource.contain(point)) {
+                        comparisonSource.addDiffPoint(point);
                         continue;
                     }
-                    if (!comparisonSources.contain(point)) {
-                        comparisonSources.addDiffPoint(point);
-                        continue;
-                    }
-                    if (diffSource.contain(point)) {
-                        if (comparisonSources.containWithRGB(point)) {
-                            comparisonSources.addDiffPoint(point);
+                    if (source.contain(point)) {
+                        if (comparisonSource.containWithRGB(point)) {
+                            comparisonSource.addDiffPoint(point);
                         }
                     }
                 }
             }
         }
-        return comparisonSources;
+        return comparisonSource;
     }
 
     private static boolean equalBytes(BufferedImage exp, BufferedImage act) {
@@ -297,7 +290,7 @@ public final class ImageComparator {
 
         try {
             visitors.forEach(visitor -> visitor.comparisonStarted(options, exp, act));
-            ImageComparisonSources comparisonSources = doComparison(exp, act, options);
+            ImageComparisonSource comparisonSources = doComparison(exp, act, options);
             result = new ImageResult(comparisonSources, options);
             visitors.forEach(visitor -> visitor.comparisonFinished(options, exp, act, result));
             log.debug("Image comparison result: {}", result);

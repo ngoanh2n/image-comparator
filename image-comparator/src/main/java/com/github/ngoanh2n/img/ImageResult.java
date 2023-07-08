@@ -19,14 +19,19 @@ class ImageResult implements ImageComparisonResult {
     private final double allowedDeviation;
     private final double currentDeviation;
 
-    ImageResult(ImageComparisonSources comparisonSources, ImageComparisonOptions options) {
-        this.diffSize = comparisonSources.getSize();
-        this.diffImage = comparisonSources.getImage();
+    ImageResult(ImageComparisonSource comparisonSource, ImageComparisonOptions options) {
+        this.diffSize = comparisonSource.getDiffSize();
+        this.diffImage = comparisonSource.getDiffImage();
         this.allowedDeviation = options.allowedDeviation();
+        this.currentDeviation = calculateDeviation(comparisonSource);
+    }
 
-        int width = comparisonSources.getMaxWidth();
-        int height = comparisonSources.getMaxHeight();
-        this.currentDeviation = diffSize / (double) (width * height);
+    //-------------------------------------------------------------------------------//
+
+    private double calculateDeviation(ImageComparisonSource comparisonSource) {
+        int width = comparisonSource.getMaxWidth();
+        int height = comparisonSource.getMaxHeight();
+        return comparisonSource.getDiffSize() / (double) (width * height);
     }
 
     //-------------------------------------------------------------------------------//
