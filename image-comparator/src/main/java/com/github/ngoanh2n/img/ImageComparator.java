@@ -27,23 +27,46 @@ import java.util.stream.Stream;
  * Compare 2 image files.<br><br>
  *
  * <b>Comparison</b>
- * <pre>{@code
- *     ImageComparisonOptions options = ImageComparisonOptions
- *             .builder()
- *             .setAllowedDeviation(0.05)       // Default to 0.0
- *             .setDiffColor(Color.CYAN)        // Default to Color.RED
- *             .build();
- *     ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
- * }</pre><br>
+ * <ol>
+ *     <li>Compare 2 images
+ *          <pre>{@code
+ *              ImageComparisonOptions options = ImageComparisonOptions
+ *                      .builder()
+ *                      .setAllowedDeviation(0.05)       // Default to 0.0
+ *                      .setDiffColor(Color.CYAN)        // Default to Color.RED
+ *                      .build();
+ *              ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
+ *          }</pre>
+ *     </li>
+ *     <li>Compare 2 image directories
+ *          <pre>{@code
+ *              Path expectedImageDir = Paths.get("data/expected");
+ *              Path actualImageDir = Paths.get("data/actual");
+ *
+ *              ImageComparisonOptions options = ImageComparisonOptions
+ *                      .builder()
+ *                      .setAllowedDeviation(0.05)       // Default to 0.0
+ *                      .setDiffColor(Color.CYAN)        // Default to Color.RED
+ *                      .build();
+ *              ImageBulkComparisonResult result = ImageComparator.compare(expectedImageDir, actualImageDir, options);
+ *          }</pre>
+ *     </li>
+ * </ol>
  *
  * <b>Result</b><br>
- * {@link ImageComparisonResult} is the result of {@link ImageComparator}.
+ * {@link ImageComparisonResult} is the result {@link ImageComparator#compare(BufferedImage, BufferedImage, ImageComparisonOptions) ImageComparator.compare(expectedImage, actualImage, options)}.
  * <pre>{@code
  *      boolean isDifferent = ImageComparisonResult.isDifferent();
  *      int diffSize = ImageComparisonResult.getDiffSize();
  *      BufferedImage diffImage = ImageComparisonResult.getDiffImage();
  *      double allowedDeviation = ImageComparisonResult.getAllowedDeviation();
  *      double currentDeviation = ImageComparisonResult.getCurrentDeviation();
+ * }</pre><br>
+ * {@link ImageBulkComparisonResult} is the result of {@link ImageComparator#compare(Path, Path, ImageComparisonOptions) ImageComparator.compare(expectedImageDir, actualImageDir, options)}.
+ * <pre>{@code
+ *      boolean hasDiff = ImageBulkComparisonResult.hasDiff();
+ *      int diffTotal = ImageBulkComparisonResult.getDiffTotal();
+ *      List<ImageComparisonResult> diffResults = ImageBulkComparisonResult.getDiffResults();
  * }</pre><br>
  *
  * <b>Visitor</b><br>
