@@ -124,10 +124,25 @@ public final class ImageComparator {
         return new ImageComparator(exp, act, options).compare();
     }
 
+    /**
+     * Compare 2 image directories.
+     *
+     * @param exp The expected image directory.
+     * @param act The actual image directory needs to compare.
+     * @return A {@link ImageBulkComparisonResult} after comparison process ended.
+     */
     public static ImageBulkComparisonResult compare(Path exp, Path act) {
         return compare(exp, act, ImageComparisonOptions.defaults());
     }
 
+    /**
+     * Compare 2 image directories.
+     *
+     * @param exp     The expected image directory.
+     * @param act     The actual image directory needs to compare.
+     * @param options The {@link ImageComparisonOptions} to adjust behaviors of {@link ImageComparator}.
+     * @return A {@link ImageBulkComparisonResult} after comparison process ended.
+     */
     public static ImageBulkComparisonResult compare(Path exp, Path act, ImageComparisonOptions options) {
         log.debug("//-----Bulk Image Comparison-----//");
         log.debug("Exp image directory: {}", Commons.getRelative(exp));
