@@ -220,8 +220,8 @@ public final class ImageComparator {
             List<Path> expFiles = getImageFiles(exp);
             List<Path> actFiles = getImageFiles(act);
 
-            log.debug("Exp CSV files: {}", expFiles.size());
-            log.debug("Act CSV files: {}", actFiles.size());
+            log.debug("Exp image files: {}", expFiles.size());
+            log.debug("Act image files: {}", actFiles.size());
             List<Map.Entry<Path, Path>> sources = new ArrayList<>(actFiles.size());
 
             for (Path actFile : actFiles) {
