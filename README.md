@@ -26,7 +26,7 @@
 ## Gradle
 Add dependency to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:image-comparator:1.2.0")
+implementation("com.github.ngoanh2n:image-comparator:1.3.0")
 ```
 
 ## Maven
@@ -35,7 +35,7 @@ Add dependency to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>image-comparator</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
