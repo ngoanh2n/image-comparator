@@ -2,6 +2,9 @@
  * Author: ngoanh2n
  */
 buildscript {
+    apply {
+        from(file("gradle/global.gradle"))
+    }
 }
 
 allprojects {
