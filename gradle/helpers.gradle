@@ -4,11 +4,11 @@
  */
 ext {
     imgc = [
-            dir   : { -> return rootDir.toPath() },
+            dir   : { -> return getRootDir().toPath() },
             gradle: { -> return imgc.dir().resolve("gradle") },
     ]
     gradle = [
-            config: { -> return cms.gradle().resolve("config") },
+            config: { -> return imgc.gradle().resolve("config") },
     ]
     config = [
             test        : { -> return gradle.config().resolve("test.gradle") },

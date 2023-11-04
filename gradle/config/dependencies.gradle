@@ -7,4 +7,5 @@ dependencies {
     testImplementation("org.slf4j:slf4j-log4j12:$versions.slf4j")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$versions.jupiter")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$versions.jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

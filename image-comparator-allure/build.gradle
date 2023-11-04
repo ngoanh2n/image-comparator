@@ -1,5 +1,6 @@
 /**
  * Author: ngoanh2n
+ * @see <a href="https://github.com/allure-framework/allure-gradle">Allure plugin for Gradle</a>
  */
 plugins {
     id("io.qameta.allure") version("2.11.2")
@@ -15,8 +16,10 @@ dependencies {
 allure {
     version = "${versions.allure}"
     adapter {
+        aspectjVersion = "${versions.aspectj}"
+        allureJavaVersion = "${versions.allure}"
+
         aspectjWeaver = true
-        aspectjVersion = "${versions.allure}"
         autoconfigureListeners = true
 
         frameworks {
@@ -27,6 +30,7 @@ allure {
         }
     }
     report {
-        reportDir = layout.buildDirectory.dir("allure")
+        DirectoryProperty buildProperty = getLayout().getBuildDirectory()
+        reportDir = buildProperty.getLocationOnly().get().file("allure").getAsFile()
     }
 }
