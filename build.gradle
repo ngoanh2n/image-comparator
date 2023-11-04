@@ -19,16 +19,12 @@ subprojects {
     apply plugin: "java-library"
     apply plugin: "maven-publish"
 
-    tasks.withType(Test).configureEach {
-        System.setProperty("user.dir", projectDir.toString())
-    }
-
     apply from: rootProject.file("gradle/test.gradle")
     apply from: rootProject.file("gradle/compilation.gradle")
     apply from: rootProject.file("gradle/publication.gradle")
     apply from: rootProject.file("gradle/dependencies.gradle")
 
-    clean.doFirst {
+    tasks.clean.doFirst {
         delete project.file("out")
         delete rootProject.files("build")
     }
