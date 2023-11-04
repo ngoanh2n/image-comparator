@@ -19,7 +19,7 @@ When using Allure as a report framework, `image-comparator-allure` should be use
 ### Gradle
 Add to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:image-comparator-allure:1.2.0")
+implementation("com.github.ngoanh2n:image-comparator-allure:1.3.0")
 ```
 
 ### Maven
@@ -28,7 +28,7 @@ Add to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>image-comparator-allure</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 

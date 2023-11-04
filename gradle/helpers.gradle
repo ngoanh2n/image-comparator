@@ -1,0 +1,19 @@
+//file:noinspection GroovyAssignabilityCheck
+/**
+ * Author: ngoanh2n
+ */
+ext {
+    imgc = [
+            dir   : { -> return getRootDir().toPath() },
+            gradle: { -> return imgc.dir().resolve("gradle") },
+    ]
+    gradle = [
+            config: { -> return imgc.gradle().resolve("config") },
+    ]
+    config = [
+            test        : { -> return gradle.config().resolve("test.gradle") },
+            compilation : { -> return gradle.config().resolve("compilation.gradle") },
+            publication : { -> return gradle.config().resolve("publication.gradle") },
+            dependencies: { -> return gradle.config().resolve("dependencies.gradle") },
+    ]
+}

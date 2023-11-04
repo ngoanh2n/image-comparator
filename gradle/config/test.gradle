@@ -1,0 +1,37 @@
+//file:noinspection GroovyAssignabilityCheck
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+/**
+ * Author: ngoanh2n
+ * @see <a href="https://docs.gradle.org/current/userguide/java_testing.html">Testing in Java & JVM projects</a>
+ * @see <a href="https://docs.gradle.org/current/dsl/org.gradle.api.reporting.ReportingExtension.html">ReportingExtension</a>
+ */
+reporting {
+    DirectoryProperty buildProperty = getLayout().getBuildDirectory()
+    baseDir = buildProperty.getLocationOnly().get().file("reports").getAsFile()
+    testResultsDirName = reporting.baseDir
+}
+
+test {
+    useJUnitPlatform()
+    setIgnoreFailures(true)
+    getOutputs().upToDateWhen { false }
+
+    reports {
+        getJunitXml().configure {
+            mergeReruns = false
+            outputPerTestCase = false
+        }
+    }
+
+    testLogging {
+        setShowStandardStreams(false)
+        events(TestLogEvent.PASSED, TestLogEvent.FAILED)
+    }
+
+    systemProperty("file.encoding", "UTF-8")
+    systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
+
+    getSystemProperties().putAll(System.getProperties() as Map<?, ?>)
+    getSystemProperties().put("user.dir", projectDir.getAbsolutePath())
+}

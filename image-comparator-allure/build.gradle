@@ -1,21 +1,25 @@
 /**
  * Author: ngoanh2n
+ * @see <a href="https://github.com/allure-framework/allure-gradle">Allure plugin for Gradle</a>
  */
 plugins {
-    id("io.qameta.allure") version "2.11.2"
+    id("io.qameta.allure") version("2.11.2")
 }
 
 dependencies {
     api(project(":image-comparator"))
-    implementation("io.qameta.allure:allure-java-commons:$versionAllure")
-    testImplementation("io.qameta.allure:allure-junit5:$versionAllure")
+    implementation("io.qameta.allure:allure-java-commons:$versions.allure")
+
+    testImplementation("io.qameta.allure:allure-junit5:$versions.allure")
 }
 
 allure {
-    version = "$versionAllure"
+    version = "${versions.allure}"
     adapter {
+        aspectjVersion = "${versions.aspectj}"
+        allureJavaVersion = "${versions.allure}"
+
         aspectjWeaver = true
-        aspectjVersion = "1.9.5"
         autoconfigureListeners = true
 
         frameworks {
@@ -26,6 +30,7 @@ allure {
         }
     }
     report {
-        reportDir = layout.buildDirectory.dir("allure")
+        DirectoryProperty buildProperty = getLayout().getBuildDirectory()
+        reportDir = buildProperty.getLocationOnly().get().file("allure").getAsFile()
     }
 }

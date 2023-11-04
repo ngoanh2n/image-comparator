@@ -5,7 +5,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/image-comparator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/image-comparator)
 [![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/image-comparator/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/image-comparator)
 [![GitHub release](https://img.shields.io/github/release/ngoanh2n/image-comparator.svg)](https://github.com/ngoanh2n/image-comparator/releases/)
-[![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![badge-jdk](https://img.shields.io/badge/jdk-11-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # Image Comparator
@@ -26,7 +26,7 @@
 ## Gradle
 Add dependency to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:image-comparator:1.2.0")
+implementation("com.github.ngoanh2n:image-comparator:1.3.0")
 ```
 
 ## Maven
@@ -35,7 +35,7 @@ Add dependency to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>image-comparator</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 

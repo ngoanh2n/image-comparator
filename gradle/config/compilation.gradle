@@ -1,0 +1,18 @@
+/**
+ * Author: ngoanh2n
+ */
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    getOptions().setDebug(true)
+    getOptions().setIncremental(true)
+    getOptions().setEncoding("UTF-8")
+}
+
+compileTestJava {
+    getOptions().setDebug(true)
+    getOptions().setEncoding("UTF-8")
+}
