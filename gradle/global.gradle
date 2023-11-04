@@ -1,0 +1,11 @@
+/**
+ * Author: ngoanh2n
+ */
+ext {
+    versions = [
+            cms    : { -> return "1.2.3" },
+            allure : { -> return "2.23.0" },
+            slf4j  : { -> return "2.0.7" },
+            jupiter: { -> return "5.9.3" },
+    ]
+}
