@@ -45,8 +45,8 @@ Add dependency to `pom.xml`.
     ```java
     ImageComparisonOptions options = ImageComparisonOptions
             .builder()
-            .setAllowedDeviation(0.05)      // Default to 0.0
-            .setDiffColor(Color.CYAN)       // Default to Color.RED
+            .allowedDeviation(0.05)         // Default to 0.0
+            .diffColor(Color.CYAN)          // Default to Color.RED
             .build();
     ImageComparisonResult result = ImageComparator.compare(expectedImage, actualImage, options);
     ```
@@ -57,8 +57,8 @@ Add dependency to `pom.xml`.
             
     ImageComparisonOptions options = ImageComparisonOptions
             .builder()
-            .setAllowedDeviation(0.05)      // Default to 0.0
-            .setDiffColor(Color.CYAN)       // Default to Color.RED
+            .allowedDeviation(0.05)         // Default to 0.0
+            .diffColor(Color.CYAN)          // Default to Color.RED
             .build();
     ImageBulkComparisonResult result = ImageComparator.compare(expectedImageDir, actualImageDir, options);
     ```
@@ -94,11 +94,11 @@ An implementation of `ImageComparisonVisitor`.
   ImageComparisonResultOptions resultOptions = ImageComparisonResultOptions
          .builder()
          .writeOutputs(false)                       // Default to true
-         //.setLocation(Paths.get("build/custom"))  // Default to build/ngoanh2n/img
+         //.location(Paths.get("build/custom"))     // Default to build/ngoanh2n/img
          .build();
   ImageComparisonOptions options = ImageComparisonOptions
          .builder()
-         .setResultOptions(resultOptions)           // Default to ImageComparisonResultOptions.defaults()
+         .resultOptions(resultOptions)              // Default to ImageComparisonResultOptions.defaults()
          .build();
   ```
 
