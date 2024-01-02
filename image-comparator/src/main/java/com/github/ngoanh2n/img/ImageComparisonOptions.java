@@ -43,13 +43,6 @@ public interface ImageComparisonOptions {
     Color diffColor();
 
     /**
-     * Color for decorating at ignored pixels after compared.
-     *
-     * @return A {@link Color}.
-     */
-    Color ignoredColor();
-
-    /**
      * The deviation for making a judgment on whether images are different corresponds to the allowed deviation.
      *
      * @return Allowed deviation.
@@ -71,13 +64,11 @@ public interface ImageComparisonOptions {
     final class Builder {
         private double deviation;
         private Color diffColor;
-        private Color ignoredColor;
         private ImageComparisonResultOptions resultOptions;
 
         private Builder() {
             this.deviation = 0.0;
             this.diffColor = Color.RED;
-            this.ignoredColor = Color.GRAY;
             this.resultOptions = ImageComparisonResultOptions.defaults();
         }
 
@@ -87,21 +78,8 @@ public interface ImageComparisonOptions {
          * @param value A {@link Color}.
          * @return The current {@link Builder}.
          */
-        public Builder setDiffColor(Color value) {
+        public Builder diffColor(Color value) {
             this.diffColor = value;
-            return this;
-        }
-
-
-        /**
-         * Set color for decorating at ignored pixels after compared.<br>
-         * TODO: Handle to pass rectangles to ignore
-         *
-         * @param value A {@link Color}.
-         * @return The current {@link Builder}.
-         */
-        private Builder setIgnoredColor(Color value) {
-            this.ignoredColor = value;
             return this;
         }
 
@@ -111,7 +89,7 @@ public interface ImageComparisonOptions {
          * @param value Allowed deviation.
          * @return The current {@link Builder}.
          */
-        public Builder setAllowedDeviation(double value) {
+        public Builder allowedDeviation(double value) {
             this.deviation = value;
             return this;
         }
@@ -122,7 +100,7 @@ public interface ImageComparisonOptions {
          * @param value A {@link ImageComparisonResultOptions}.
          * @return The current {@link Builder}.
          */
-        public Builder setResultOptions(ImageComparisonResultOptions value) {
+        public Builder resultOptions(ImageComparisonResultOptions value) {
             this.resultOptions = value;
             return this;
         }
@@ -137,11 +115,6 @@ public interface ImageComparisonOptions {
                 @Override
                 public Color diffColor() {
                     return diffColor;
-                }
-
-                @Override
-                public Color ignoredColor() {
-                    return ignoredColor;
                 }
 
                 @Override

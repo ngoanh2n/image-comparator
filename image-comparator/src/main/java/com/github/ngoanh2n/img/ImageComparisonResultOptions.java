@@ -74,7 +74,7 @@ public interface ImageComparisonResultOptions {
          * @param path The path to location.
          * @return The current {@link Builder}.
          */
-        public Builder setLocation(Path path) {
+        public Builder location(Path path) {
             this.location = Preconditions.checkNotNull(path, "path cannot not be null");
             return this;
         }

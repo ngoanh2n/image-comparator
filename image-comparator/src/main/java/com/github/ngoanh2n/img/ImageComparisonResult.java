@@ -37,7 +37,7 @@ public interface ImageComparisonResult {
     BufferedImage getDiffImage();
 
     /**
-     * Get the deviation you have set by {@link ImageComparisonOptions.Builder#setAllowedDeviation(double)}.
+     * Get the deviation you have set by {@link ImageComparisonOptions.Builder#allowedDeviation(double)}.
      *
      * @return Allowed deviation.
      */
