@@ -3,11 +3,11 @@
 #
 [versions]
 allure-java       = "2.28.0"
-commons           = "1.4.0"
-slf4j             = "2.0.10"
+commons           = "1.6.0"
+slf4j             = "2.0.13"
 junit-jupiter     = "5.10.3"
-junit-platform    = "1.10.2"
-aspectj           = "1.9.21"
+junit-platform    = "1.10.3"
+aspectj           = "1.9.22.1"
 allure-plugin     = "2.11.2"
 
 [libraries]
