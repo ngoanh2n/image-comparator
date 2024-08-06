@@ -3,7 +3,7 @@
 #
 [versions]
 commons           = "1.6.0"
-allure-java       = "2.28.1"
+allure-java       = "2.29.0"
 aspectj           = "1.9.22.1"
 slf4j             = "2.0.13"
 junit-jupiter     = "5.10.3"
