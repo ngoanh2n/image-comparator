@@ -6,7 +6,7 @@ commons           = "1.6.0"
 allure-java       = "2.29.0"
 aspectj           = "1.9.22.1"
 slf4j             = "2.0.16"
-junit-jupiter     = "5.10.3"
+junit-jupiter     = "5.11.0"
 junit-platform    = "1.11.0"
 allure-plugin     = "2.12.0"
 
